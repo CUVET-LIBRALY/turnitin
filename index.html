@@ -78,9 +78,9 @@
         <!-- Step 1 -->
         <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm relative overflow-hidden">
           <div class="w-9 h-9 rounded-xl bg-pink-100 text-pink-900 font-extrabold flex items-center justify-center text-base mb-4">1</div>
-          <h4 id="s1-title" class="font-bold text-base text-slate-900 mb-2">ส่งไฟล์และรายละเอียดทางอีเมล</h4>
+          <h4 id="s1-title" class="font-bold text-base text-slate-900 mb-2">เตรียมไฟล์ PDF และส่งคำขอทางอีเมล</h4>
           <p id="s1-desc" class="text-sm text-slate-600 leading-relaxed mb-3">
-            ส่งไฟล์เอกสาร (<code>.doc</code>, <code>.docx</code> หรือ <code>.pdf</code>) มาที่อีเมลห้องสมุด พร้อมระบุข้อมูลให้ครบถ้วน:
+            ส่งไฟล์ <b>PDF (<code>.pdf</code>) เฉพาะส่วนเนื้อหาหลักเท่านั้น</b> <i>(ตัดหน้าปก, หน้าอนุมัติ, สารบัญ, อ้างอิง และประวัติผู้เขียนออก)</i> พร้อมระบุข้อมูลดังนี้:
           </p>
           <ul id="s1-list" class="text-xs text-slate-600 space-y-1.5 bg-slate-50 p-3 rounded-xl border border-slate-100">
             <li>• ชื่อ-นามสกุล และรหัสนิสิต</li>
@@ -198,7 +198,7 @@
           </button>
           <button type="button" id="btn-open-outlook" onclick="openStudentOutlook()" 
             class="px-5 py-2.5 bg-sky-700 hover:bg-sky-800 text-white text-xs font-bold rounded-xl shadow-sm transition">
-            เปิด Outlook Web เพื่อส่งอีเมล (อย่าลืมแนบไฟล์งาน)
+            เปิด Outlook Web เพื่อส่งอีเมล (อย่าลืมแนบไฟล์ PDF เนื้อหาหลัก)
           </button>
         </div>
       </div>
@@ -216,12 +216,12 @@
             คัดลอกโพสต์ประชาสัมพันธ์
           </button>
         </div>
-        <textarea id="pr-social-post" rows="12" readonly class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs leading-relaxed text-slate-700">📢 แจ้งปรับปรุงขั้นตอนการขอรับบริการตรวจสอบความซ้ำซ้อนทางวิชาการ (Turnitin)
+        <textarea id="pr-social-post" rows="13" readonly class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs leading-relaxed text-slate-700">📢 แจ้งปรับปรุงขั้นตอนการขอรับบริการตรวจสอบความซ้ำซ้อนทางวิชาการ (Turnitin)
 ห้องสมุดและศูนย์เอกสารการสัตว์ คณะสัตวแพทยศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย
 
 เพื่อให้การรับรองผลการตรวจมีความถูกต้อง รวดเร็ว และป้องกันการปลอมแปลงเอกสาร ห้องสมุดฯ ขอแจ้งแนวปฏิบัติการส่งตรวจ Turnitin ดังนี้ครับ:
 
-1️⃣ ส่งคำขอตรวจทางอีเมล: แนบไฟล์ผลงาน (.doc, .docx, .pdf) พร้อมแจ้ง ชื่อ-รหัสนิสิต, ชื่อเรื่อง, อีเมลอาจารย์ที่ปรึกษา และระบุประเภทคำขอ (Draft หรือ Official)
+1️⃣ เตรียมไฟล์ PDF และส่งคำขอทางอีเมล: แนบไฟล์ PDF (.pdf) เฉพาะส่วนเนื้อหาหลักเท่านั้น (กรุณาตัดหน้าปก, หน้าอนุมัติ, สารบัญ, รายการอ้างอิง และประวัติผู้เขียนออกก่อนส่ง) พร้อมแจ้ง ชื่อ-รหัสนิสิต, ชื่อเรื่อง, อีเมลอาจารย์ที่ปรึกษา และระบุประเภทคำขอ (Draft หรือ Official)
 2️⃣ รอบตรวจเพื่อแก้ไข (Draft Check): นิสิตสามารถส่งตรวจซ้ำเพื่อปรับปรุงเนื้อหาได้ (ตั้งค่าแบบ No Repository ไม่เก็บไฟล์ลงฐานข้อมูล) โดยผลตรวจรอบ Draft จะส่งกลับให้นิสิตเพียงคนเดียว
 3️⃣ รอบขอออกใบรับรองฉบับจริง (Official Certificate): เมื่อได้ค่า % ตามเกณฑ์แล้ว ให้ตอบกลับอีเมลเดิมเพื่อขอออกใบรับรองฉบับจริง ห้องสมุดจะออกหน้าปกรับรองที่มี รหัสอ้างอิง (Ref. ID) และ QR Code พร้อมส่งอีเมลแจ้งผลให้นิสิตและสำเนาถึง (CC) อาจารย์ที่ปรึกษาโดยตรง
 
@@ -232,7 +232,7 @@ The Veterinary Library and Information Center, Chulalongkorn University
 
 To ensure report authenticity and streamline academic submission, please follow our 3-step Turnitin checking process:
 
-1️⃣ Submit Request via Email: Attach your manuscript (.doc, .docx, .pdf) along with your Full Name, Student ID, Paper Title, Advisor's Email, and Request Type (Draft or Official).
+1️⃣ Prepare PDF & Submit via Email: Attach a PDF file (.pdf) containing the main body content only (please exclude cover page, approval page, table of contents, references/bibliography, and author biography), along with your Full Name, Student ID, Paper Title, Advisor's Email, and Request Type (Draft or Official).
 2️⃣ Draft Check (For Revision): You may re-submit revised drafts (checked under No Repository). Draft reports are sent solely to the student for revision purposes.
 3️⃣ Official Certification: Once your score meets the requirement, reply to the same email thread to request an Official Certificate. The library will issue a bilingual cover certificate with a unique Reference ID & QR Code, and send it to you with a direct CC to your advisor.
 
@@ -273,8 +273,8 @@ To ensure report authenticity and streamline academic submission, please follow 
         bannerCta: "สร้างข้อความส่งขอตรวจ",
         stepsHeading: "ขั้นตอนการขอรับบริการ (3 ขั้นตอนง่ายๆ)",
         stepsSubheading: "แยกขั้นตอนชัดเจนระหว่าง \"รอบตรวจเพื่อแก้ไข\" และ \"รอบขอออกใบรับรองฉบับจริง\"",
-        s1Title: "ส่งไฟล์และรายละเอียดทางอีเมล",
-        s1Desc: "ส่งไฟล์เอกสาร (<code>.doc</code>, <code>.docx</code> หรือ <code>.pdf</code>) มาที่อีเมลห้องสมุด พร้อมระบุข้อมูลให้ครบถ้วน:",
+        s1Title: "เตรียมไฟล์ PDF และส่งคำขอทางอีเมล",
+        s1Desc: "ส่งไฟล์ <b>PDF (<code>.pdf</code>) เฉพาะส่วนเนื้อหาหลักเท่านั้น</b> <i>(ตัดหน้าปก, หน้าอนุมัติ, สารบัญ, อ้างอิง และประวัติผู้เขียนออก)</i> พร้อมระบุข้อมูลดังนี้:",
         s1List: `
           <li>• ชื่อ-นามสกุล และรหัสนิสิต</li>
           <li>• ชื่อบทความ / วิทยานิพนธ์ / โครงงาน</li>
@@ -310,7 +310,7 @@ To ensure report authenticity and streamline academic submission, please follow 
         lblOutBody: "เนื้อหาอีเมล (Email Body)",
         btnCopyBody: "คัดลอกเนื้อหา",
         btnCopyAll: "คัดลอกข้อความทั้งหมด",
-        btnOpenOutlook: "เปิด Outlook Web เพื่อส่งอีเมล (อย่าลืมแนบไฟล์งาน)",
+        btnOpenOutlook: "เปิด Outlook Web เพื่อส่งอีเมล (อย่าลืมแนบไฟล์ PDF เนื้อหาหลัก)",
         prSummary: "สำหรับเจ้าหน้าที่: ข้อความประกาศประชาสัมพันธ์สำเร็จรูป (สำหรับโพสต์ Facebook / LINE / Instagram)",
         prLabel: "แคปชันประชาสัมพันธ์ 2 ภาษา (พร้อมคัดลอกโพสต์)",
         btnCopyPr: "คัดลอกโพสต์ประชาสัมพันธ์",
@@ -327,8 +327,8 @@ To ensure report authenticity and streamline academic submission, please follow 
         bannerCta: "Create Request Email",
         stepsHeading: "Service Procedure (3 Simple Steps)",
         stepsSubheading: "Clear separation between \"Draft Check for Revision\" and \"Official Certified Report\"",
-        s1Title: "Submit Manuscript via Email",
-        s1Desc: "Email your manuscript (<code>.doc</code>, <code>.docx</code>, or <code>.pdf</code>) to the library with the following required information:",
+        s1Title: "Prepare PDF & Submit via Email",
+        s1Desc: "Attach a <b>PDF file (<code>.pdf</code>) containing the main body content only</b> <i>(exclude cover page, approval page, table of contents, references, and author biography)</i>, along with:",
         s1List: `
           <li>• Full Name and Student ID</li>
           <li>• Title of Manuscript / Thesis / Project</li>
@@ -352,177 +352,4 @@ To ensure report authenticity and streamline academic submission, please follow 
         lblStuId: "Student ID *",
         phStuId: "e.g. 6631001231",
         lblStuName: "Student Full Name *",
-        phStuName: "e.g. Mr. John Doe",
-        lblAdvEmail: "Advisor / Instructor Email *",
-        phAdvEmail: "advisor@chula.ac.th",
-        lblPaperTitle: "Manuscript / Thesis Title *",
-        phPaperTitle: "Enter your manuscript or thesis title",
-        lblSendTo: "Send To:",
-        btnCopyEmail: "Copy Library Email",
-        lblOutSubject: "Email Subject",
-        btnCopySubject: "Copy Subject",
-        lblOutBody: "Email Body",
-        btnCopyBody: "Copy Body",
-        btnCopyAll: "Copy Full Message",
-        btnOpenOutlook: "Open Outlook Web to Send (Remember to Attach File)",
-        prSummary: "For Library Staff: Ready-to-Post Announcement Template (Facebook / LINE / Instagram)",
-        prLabel: "Bilingual Announcement Caption (Ready to Copy)",
-        btnCopyPr: "Copy Announcement Post",
-        footerOrg: "The Veterinary Library and Information Center, Chulalongkorn University",
-        footerSub: "Faculty of Veterinary Science, Chulalongkorn University, Bangkok, Thailand"
-      }
-    };
-
-    window.onload = function() {
-      document.getElementById('display-lib-email').textContent = LIBRARY_EMAIL;
-      document.getElementById('footer-email').textContent = LIBRARY_EMAIL;
-      setLang('th');
-      generateStudentEmail();
-    };
-
-    function setLang(lang) {
-      currentLang = lang;
-      const c = CONTENT[lang];
-
-      document.title = c.pageTitle;
-      document.documentElement.lang = lang;
-
-      document.getElementById('btn-th').className = lang === 'th'
-        ? 'px-3 py-1 text-xs rounded-lg bg-white text-pink-950 font-bold transition'
-        : 'px-3 py-1 text-xs rounded-lg text-pink-200 hover:text-white font-bold transition';
-      document.getElementById('btn-en').className = lang === 'en'
-        ? 'px-3 py-1 text-xs rounded-lg bg-white text-pink-950 font-bold transition'
-        : 'px-3 py-1 text-xs rounded-lg text-pink-200 hover:text-white font-bold transition';
-
-      const verifyBtn = document.getElementById('btn-verify-portal');
-      verifyBtn.textContent = c.verifyBtn;
-      verifyBtn.href = lang === 'en' ? `${VERIFY_PORTAL_URL}?lang=en` : VERIFY_PORTAL_URL;
-
-      document.getElementById('hero-title').textContent = c.heroTitle;
-      document.getElementById('hero-subtitle').textContent = c.heroSubtitle;
-      document.getElementById('banner-title').textContent = c.bannerTitle;
-      document.getElementById('banner-desc').innerHTML = c.bannerDesc;
-      document.getElementById('banner-cta').textContent = c.bannerCta;
-      document.getElementById('steps-heading').textContent = c.stepsHeading;
-      document.getElementById('steps-subheading').textContent = c.stepsSubheading;
-
-      document.getElementById('s1-title').textContent = c.s1Title;
-      document.getElementById('s1-desc').innerHTML = c.s1Desc;
-      document.getElementById('s1-list').innerHTML = c.s1List;
-
-      document.getElementById('s2-title').textContent = c.s2Title;
-      document.getElementById('s2-desc').textContent = c.s2Desc;
-      document.getElementById('s2-note').innerHTML = c.s2Note;
-
-      document.getElementById('s3-title').textContent = c.s3Title;
-      document.getElementById('s3-desc').textContent = c.s3Desc;
-      document.getElementById('s3-note').innerHTML = c.s3Note;
-
-      document.getElementById('info1-title').textContent = c.info1Title;
-      document.getElementById('info1-desc').innerHTML = c.info1Desc;
-      document.getElementById('info2-title').textContent = c.info2Title;
-      document.getElementById('info2-desc').innerHTML = c.info2Desc;
-
-      document.getElementById('gen-title').textContent = c.genTitle;
-      document.getElementById('gen-desc').textContent = c.genDesc;
-
-      document.getElementById('lbl-req-type').textContent = c.lblReqType;
-      document.getElementById('opt-draft').textContent = c.optDraft;
-      document.getElementById('opt-official').textContent = c.optOfficial;
-      document.getElementById('lbl-stu-id').textContent = c.lblStuId;
-      document.getElementById('in-id').placeholder = c.phStuId;
-      document.getElementById('lbl-stu-name').textContent = c.lblStuName;
-      document.getElementById('in-name').placeholder = c.phStuName;
-      document.getElementById('lbl-adv-email').textContent = c.lblAdvEmail;
-      document.getElementById('in-advisor').placeholder = c.phAdvEmail;
-      document.getElementById('lbl-paper-title').textContent = c.lblPaperTitle;
-      document.getElementById('in-title').placeholder = c.phPaperTitle;
-
-      document.getElementById('lbl-send-to').textContent = c.lblSendTo;
-      document.getElementById('btn-copy-email').textContent = c.btnCopyEmail;
-      document.getElementById('lbl-out-subject').textContent = c.lblOutSubject;
-      document.getElementById('btn-copy-subject').textContent = c.btnCopySubject;
-      document.getElementById('lbl-out-body').textContent = c.lblOutBody;
-      document.getElementById('btn-copy-body').textContent = c.btnCopyBody;
-      document.getElementById('btn-copy-all').textContent = c.btnCopyAll;
-      document.getElementById('btn-open-outlook').textContent = c.btnOpenOutlook;
-
-      document.getElementById('pr-summary').textContent = c.prSummary;
-      document.getElementById('pr-label').textContent = c.prLabel;
-      document.getElementById('btn-copy-pr').textContent = c.btnCopyPr;
-
-      document.getElementById('footer-org').textContent = c.footerOrg;
-      document.getElementById('footer-sub').textContent = c.footerSub;
-
-      generateStudentEmail();
-    }
-
-    function generateStudentEmail() {
-      const type = document.getElementById('in-type').value;
-      const stuId = document.getElementById('in-id').value.trim() || (currentLang === 'en' ? '[Student ID]' : '[รหัสนิสิต]');
-      const stuName = document.getElementById('in-name').value.trim() || (currentLang === 'en' ? '[Full Name]' : '[ชื่อ-นามสกุล]');
-      const advisor = document.getElementById('in-advisor').value.trim() || (currentLang === 'en' ? '[Advisor Email]' : '[อีเมลอาจารย์ที่ปรึกษา]');
-      const title = document.getElementById('in-title').value.trim() || (currentLang === 'en' ? '[Document Title]' : '[ชื่อบทความ หรือ วิทยานิพนธ์]');
-
-      if (currentLang === 'en') {
-        const typeLabel = type === 'Official' ? 'Official Certificate Request' : 'Draft Check for Revision';
-        document.getElementById('out-subject').value = `[Turnitin - ${type}] ${typeLabel} - ${stuName} (${stuId})`;
-        document.getElementById('out-body').value = `Dear Librarian,
-
-I would like to submit my manuscript for a Turnitin similarity check. Please find the details below:
-• Request Type: ${typeLabel} (${type})
-• Full Name: ${stuName}
-• Student ID: ${stuId}
-• Document Title: ${title}
-• Advisor / Instructor Email: ${advisor}
-
-I have attached the manuscript file with this email.
-
-Best regards,
-${stuName}`;
-      } else {
-        const typeLabel = type === 'Official' ? 'ขอออกใบรับรองผลฉบับจริง (Official Certificate)' : 'ตรวจเพื่อแก้ไข (Draft Check)';
-        document.getElementById('out-subject').value = `[Turnitin - ${type}] ขอรับบริการตรวจความซ้ำซ้อน - ${stuName} (${stuId})`;
-        document.getElementById('out-body').value = `เรียน เจ้าหน้าที่ห้องสมุดและศูนย์เอกสารการสัตว์ฯ
-
-ขอความอนุเคราะห์ตรวจสอบความซ้ำซ้อนทางวิชาการ (Turnitin) โดยมีรายละเอียดดังนี้ครับ/ค่ะ:
-• ประเภทคำขอ: ${typeLabel}
-• ชื่อ-นามสกุล นิสิต: ${stuName}
-• รหัสนิสิต: ${stuId}
-• ชื่อผลงาน: ${title}
-• อีเมลอาจารย์ที่ปรึกษา / อาจารย์ประจำวิชา: ${advisor}
-
-ได้แนบไฟล์เอกสารมาพร้อมกับอีเมลฉบับนี้แล้วครับ/ค่ะ
-
-ขอแสดงความนับถือ
-${stuName}`;
-      }
-    }
-
-    function openStudentOutlook() {
-      const subject = document.getElementById('out-subject').value;
-      const body = document.getElementById('out-body').value;
-      const url = `https://outlook.office.com/mail/deeplink/compose?to=${encodeURIComponent(LIBRARY_EMAIL)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.open(url, '_blank');
-    }
-
-    function copyElementValue(id, btn) {
-      const val = document.getElementById(id).value;
-      navigator.clipboard.writeText(val).then(() => {
-        const old = btn.textContent;
-        btn.textContent = currentLang === 'en' ? 'Copied!' : 'คัดลอกแล้ว!';
-        setTimeout(() => btn.textContent = old, 1500);
-      });
-    }
-
-    function copyElementText(id, btn) {
-      const val = document.getElementById(id).textContent;
-      navigator.clipboard.writeText(val).then(() => {
-        const old = btn.textContent;
-        btn.textContent = currentLang === 'en' ? 'Copied!' : 'คัดลอกแล้ว!';
-        setTimeout(() => btn.textContent = old, 1500);
-      });
-    }
-  </script>
-</body>
-</html>
+        phStuName: "e.g
