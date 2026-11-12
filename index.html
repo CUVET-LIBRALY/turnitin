@@ -7,41 +7,38 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Sarabun', sans-serif; }
+    body { font-family: 'Sarabun', sans-serif; scroll-behavior: smooth; }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
 
-  <!-- Top Header -->
-  <header class="bg-gradient-to-r from-pink-950 via-pink-900 to-rose-900 text-white shadow-lg">
-    <div class="max-w-5xl mx-auto px-4 py-6">
-      <div class="flex flex-wrap items-center justify-between gap-4">
-        <div class="flex items-center gap-3.5">
-          <div class="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur flex items-center justify-center font-extrabold text-2xl border border-white/20">
+  <!-- Sticky Top Header -->
+  <header class="sticky top-0 z-40 bg-gradient-to-r from-pink-950 via-pink-900 to-rose-900 text-white shadow-lg">
+    <div class="max-w-5xl mx-auto px-4 py-4">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-white/15 backdrop-blur flex items-center justify-center font-extrabold text-xl border border-white/20 shrink-0">
             T
           </div>
           <div>
-            <span class="inline-block px-2.5 py-0.5 bg-pink-700/80 text-pink-100 text-[11px] font-semibold rounded-full mb-1">
-              LIBRARY RESEARCH SUPPORT SERVICE
-            </span>
-            <h1 id="hero-title" class="text-xl md:text-2xl font-extrabold leading-tight">
+            <h1 id="hero-title" class="text-base md:text-xl font-extrabold leading-tight">
               บริการตรวจสอบความซ้ำซ้อนทางวิชาการ (Turnitin)
             </h1>
-            <p id="hero-subtitle" class="text-xs md:text-sm text-pink-200 mt-0.5">
+            <p id="hero-subtitle" class="text-[11px] md:text-xs text-pink-200 mt-0.5">
               ห้องสมุดและศูนย์เอกสารการสัตว์ คณะสัตวแพทยศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย
             </p>
           </div>
         </div>
 
         <!-- Language Switcher & Verify Link -->
-        <div class="flex items-center gap-2.5">
+        <div class="flex items-center gap-2">
           <a id="btn-verify-portal" href="#" target="_blank" 
-            class="px-3.5 py-2 bg-white/15 hover:bg-white/25 text-white text-xs font-semibold rounded-xl border border-white/25 transition flex items-center gap-1.5">
+            class="px-3 py-1.5 bg-white/15 hover:bg-white/25 text-white text-xs font-semibold rounded-xl border border-white/25 transition">
             ตรวจสอบใบรับรอง (QR)
           </a>
           <div class="flex bg-black/30 rounded-xl p-1 border border-white/15">
-            <button onclick="setLang('th')" id="btn-th" class="px-3 py-1 text-xs rounded-lg bg-white text-pink-950 font-bold transition">ไทย</button>
-            <button onclick="setLang('en')" id="btn-en" class="px-3 py-1 text-xs rounded-lg text-pink-200 hover:text-white font-bold transition">EN</button>
+            <button type="button" onclick="setLang('th')" id="btn-th" class="px-3 py-1 text-xs rounded-lg bg-white text-pink-950 font-bold transition cursor-pointer">ไทย</button>
+            <button type="button" onclick="setLang('en')" id="btn-en" class="px-3 py-1 text-xs rounded-lg text-pink-200 hover:text-white font-bold transition cursor-pointer">EN</button>
           </div>
         </div>
       </div>
@@ -76,7 +73,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
         <!-- Step 1 -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm relative overflow-hidden">
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
           <div class="w-9 h-9 rounded-xl bg-pink-100 text-pink-900 font-extrabold flex items-center justify-center text-base mb-4">1</div>
           <h4 id="s1-title" class="font-bold text-base text-slate-900 mb-2">เตรียมไฟล์ PDF และส่งคำขอทางอีเมล</h4>
           <p id="s1-desc" class="text-sm text-slate-600 leading-relaxed mb-3">
@@ -91,7 +88,7 @@
         </div>
 
         <!-- Step 2 -->
-        <div class="bg-white rounded-2xl border border-amber-200 p-6 shadow-sm relative overflow-hidden">
+        <div class="bg-white rounded-2xl border border-amber-200 p-6 shadow-sm">
           <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-900 font-extrabold flex items-center justify-center text-base mb-4">2</div>
           <h4 id="s2-title" class="font-bold text-base text-slate-900 mb-2">รอบตรวจแก้ไข (Draft Check)</h4>
           <p id="s2-desc" class="text-sm text-slate-600 leading-relaxed mb-3">
@@ -103,7 +100,7 @@
         </div>
 
         <!-- Step 3 -->
-        <div class="bg-white rounded-2xl border border-emerald-200 p-6 shadow-sm relative overflow-hidden">
+        <div class="bg-white rounded-2xl border border-emerald-200 p-6 shadow-sm">
           <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-900 font-extrabold flex items-center justify-center text-base mb-4">3</div>
           <h4 id="s3-title" class="font-bold text-base text-slate-900 mb-2">ขอใบรับรองฉบับจริง (Official)</h4>
           <p id="s3-desc" class="text-sm text-slate-600 leading-relaxed mb-3">
@@ -133,11 +130,18 @@
     </section>
 
     <!-- Interactive Student Email Request Generator -->
-    <section id="request-builder" class="bg-white rounded-2xl border-2 border-pink-200 shadow-sm p-6">
-      <div class="border-b border-slate-100 pb-4 mb-5">
-        <span class="px-2.5 py-0.5 bg-pink-100 text-pink-900 text-xs font-bold rounded-full">SELF-SERVICE HELPER</span>
-        <h3 id="gen-title" class="text-lg font-extrabold text-slate-900 mt-1">เครื่องมือสร้างข้อความส่งอีเมลขอตรวจ Turnitin (สำหรับนิสิต)</h3>
-        <p id="gen-desc" class="text-xs text-slate-500">กรอกข้อมูลด้านล่างเพื่อสร้างข้อความส่งอีเมลที่ถูกต้องครบถ้วน ลดความล่าช้าในการตรวจสอบ</p>
+    <section id="request-builder" class="scroll-mt-24 bg-white rounded-2xl border-2 border-pink-200 shadow-sm p-6">
+      <div class="flex flex-wrap items-start justify-between gap-3 border-b border-slate-100 pb-4 mb-5">
+        <div>
+          <span class="px-2.5 py-0.5 bg-pink-100 text-pink-900 text-xs font-bold rounded-full">SELF-SERVICE HELPER</span>
+          <h3 id="gen-title" class="text-lg font-extrabold text-slate-900 mt-1">เครื่องมือสร้างข้อความส่งอีเมลขอตรวจ Turnitin (สำหรับนิสิต)</h3>
+          <p id="gen-desc" class="text-xs text-slate-500">กรอกข้อมูลด้านล่างเพื่อสร้างข้อความส่งอีเมลที่ถูกต้องครบถ้วน ลดความล่าช้าในการตรวจสอบ</p>
+        </div>
+        <!-- Secondary Language Switcher inside Builder -->
+        <div class="flex items-center gap-1.5 bg-slate-100 rounded-xl p-1 border border-slate-200">
+          <button type="button" onclick="setLang('th')" id="btn-th-sub" class="px-3 py-1 text-xs rounded-lg bg-pink-900 text-white font-bold transition cursor-pointer">ภาษาไทย</button>
+          <button type="button" onclick="setLang('en')" id="btn-en-sub" class="px-3 py-1 text-xs rounded-lg text-slate-600 hover:text-slate-900 font-bold transition cursor-pointer">English (EN)</button>
+        </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
@@ -170,7 +174,7 @@
       <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 space-y-3">
         <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
           <span><span id="lbl-send-to">ส่งถึงอีเมล:</span> <b id="display-lib-email" class="font-mono text-pink-900 text-sm"></b></span>
-          <button type="button" id="btn-copy-email" onclick="copyElementText('display-lib-email', this)" class="px-2.5 py-1 bg-white border border-slate-300 hover:bg-slate-100 rounded-lg font-medium">
+          <button type="button" id="btn-copy-email" onclick="copyElementText('display-lib-email', this)" class="px-2.5 py-1 bg-white border border-slate-300 hover:bg-slate-100 rounded-lg font-medium cursor-pointer">
             คัดลอกอีเมลห้องสมุด
           </button>
         </div>
@@ -178,7 +182,7 @@
         <div>
           <div class="flex justify-between items-center mb-1">
             <span id="lbl-out-subject" class="text-xs font-bold text-slate-600">หัวข้ออีเมล (Subject)</span>
-            <button type="button" id="btn-copy-subject" onclick="copyElementValue('out-subject', this)" class="text-xs text-pink-800 hover:underline font-medium">คัดลอกหัวข้อ</button>
+            <button type="button" id="btn-copy-subject" onclick="copyElementValue('out-subject', this)" class="text-xs text-pink-800 hover:underline font-medium cursor-pointer">คัดลอกหัวข้อ</button>
           </div>
           <input type="text" id="out-subject" readonly class="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-xs font-medium text-slate-800">
         </div>
@@ -186,18 +190,18 @@
         <div>
           <div class="flex justify-between items-center mb-1">
             <span id="lbl-out-body" class="text-xs font-bold text-slate-600">เนื้อหาอีเมล (Email Body)</span>
-            <button type="button" id="btn-copy-body" onclick="copyElementValue('out-body', this)" class="text-xs text-pink-800 hover:underline font-medium">คัดลอกเนื้อหา</button>
+            <button type="button" id="btn-copy-body" onclick="copyElementValue('out-body', this)" class="text-xs text-pink-800 hover:underline font-medium cursor-pointer">คัดลอกเนื้อหา</button>
           </div>
           <textarea id="out-body" rows="6" readonly class="w-full p-3 bg-white border border-slate-300 rounded-lg text-xs leading-relaxed text-slate-800"></textarea>
         </div>
 
         <div class="flex flex-wrap justify-end gap-2 pt-1">
           <button type="button" id="btn-copy-all" onclick="copyElementValue('out-body', this)" 
-            class="px-4 py-2.5 bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold rounded-xl transition">
+            class="px-4 py-2.5 bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold rounded-xl transition cursor-pointer">
             คัดลอกข้อความทั้งหมด
           </button>
           <button type="button" id="btn-open-outlook" onclick="openStudentOutlook()" 
-            class="px-5 py-2.5 bg-sky-700 hover:bg-sky-800 text-white text-xs font-bold rounded-xl shadow-sm transition">
+            class="px-5 py-2.5 bg-sky-700 hover:bg-sky-800 text-white text-xs font-bold rounded-xl shadow-sm transition cursor-pointer">
             เปิด Outlook Web เพื่อส่งอีเมล (อย่าลืมแนบไฟล์ PDF เนื้อหาหลัก)
           </button>
         </div>
@@ -212,7 +216,7 @@
       <div class="mt-4 pt-4 border-t border-slate-100 space-y-3">
         <div class="flex justify-between items-center">
           <span id="pr-label" class="text-xs font-bold text-slate-700">แคปชันประชาสัมพันธ์ 2 ภาษา (พร้อมคัดลอกโพสต์)</span>
-          <button type="button" id="btn-copy-pr" onclick="copyElementValue('pr-social-post', this)" class="px-3 py-1.5 bg-pink-800 hover:bg-pink-900 text-white text-xs font-medium rounded-lg">
+          <button type="button" id="btn-copy-pr" onclick="copyElementValue('pr-social-post', this)" class="px-3 py-1.5 bg-pink-800 hover:bg-pink-900 text-white text-xs font-medium rounded-lg cursor-pointer">
             คัดลอกโพสต์ประชาสัมพันธ์
           </button>
         </div>
@@ -352,4 +356,211 @@ To ensure report authenticity and streamline academic submission, please follow 
         lblStuId: "Student ID *",
         phStuId: "e.g. 6631001231",
         lblStuName: "Student Full Name *",
-        phStuName: "e.g
+        phStuName: "e.g. Mr. John Doe",
+        lblAdvEmail: "Advisor / Instructor Email *",
+        phAdvEmail: "advisor@chula.ac.th",
+        lblPaperTitle: "Manuscript / Thesis Title *",
+        phPaperTitle: "Enter your manuscript or thesis title",
+        lblSendTo: "Send To:",
+        btnCopyEmail: "Copy Library Email",
+        lblOutSubject: "Email Subject",
+        btnCopySubject: "Copy Subject",
+        lblOutBody: "Email Body",
+        btnCopyBody: "Copy Body",
+        btnCopyAll: "Copy Full Message",
+        btnOpenOutlook: "Open Outlook Web to Send (Attach Main-Body PDF)",
+        prSummary: "For Library Staff: Ready-to-Post Announcement Template (Facebook / LINE / Instagram)",
+        prLabel: "Bilingual Announcement Caption (Ready to Copy)",
+        btnCopyPr: "Copy Announcement Post",
+        footerOrg: "The Veterinary Library and Information Center, Chulalongkorn University",
+        footerSub: "Faculty of Veterinary Science, Chulalongkorn University, Bangkok, Thailand"
+      }
+    };
+
+    function setText(id, val) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = val;
+    }
+
+    function setHtml(id, val) {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = val;
+    }
+
+    function setPlaceholder(id, val) {
+      const el = document.getElementById(id);
+      if (el) el.placeholder = val;
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      setText('display-lib-email', LIBRARY_EMAIL);
+      setText('footer-email', LIBRARY_EMAIL);
+      const urlParams = new URLSearchParams(window.location.search);
+      const initialLang = (urlParams.get('lang') || '').toLowerCase() === 'en' ? 'en' : 'th';
+      setLang(initialLang);
+    });
+
+    function setLang(lang) {
+      currentLang = lang;
+      const c = CONTENT[lang];
+      if (!c) return;
+
+      document.title = c.pageTitle;
+      document.documentElement.lang = lang;
+
+      const btnTh = document.getElementById('btn-th');
+      const btnEn = document.getElementById('btn-en');
+      if (btnTh && btnEn) {
+        btnTh.className = lang === 'th'
+          ? 'px-3 py-1 text-xs rounded-lg bg-white text-pink-950 font-bold transition cursor-pointer'
+          : 'px-3 py-1 text-xs rounded-lg text-pink-200 hover:text-white font-bold transition cursor-pointer';
+        btnEn.className = lang === 'en'
+          ? 'px-3 py-1 text-xs rounded-lg bg-white text-pink-950 font-bold transition cursor-pointer'
+          : 'px-3 py-1 text-xs rounded-lg text-pink-200 hover:text-white font-bold transition cursor-pointer';
+      }
+
+      const btnThSub = document.getElementById('btn-th-sub');
+      const btnEnSub = document.getElementById('btn-en-sub');
+      if (btnThSub && btnEnSub) {
+        btnThSub.className = lang === 'th'
+          ? 'px-3 py-1 text-xs rounded-lg bg-pink-900 text-white font-bold transition cursor-pointer'
+          : 'px-3 py-1 text-xs rounded-lg text-slate-600 hover:text-slate-900 font-bold transition cursor-pointer';
+        btnEnSub.className = lang === 'en'
+          ? 'px-3 py-1 text-xs rounded-lg bg-pink-900 text-white font-bold transition cursor-pointer'
+          : 'px-3 py-1 text-xs rounded-lg text-slate-600 hover:text-slate-900 font-bold transition cursor-pointer';
+      }
+
+      const verifyBtn = document.getElementById('btn-verify-portal');
+      if (verifyBtn) {
+        verifyBtn.textContent = c.verifyBtn;
+        verifyBtn.href = lang === 'en' ? `${VERIFY_PORTAL_URL}?lang=en` : VERIFY_PORTAL_URL;
+      }
+
+      setText('hero-title', c.heroTitle);
+      setText('hero-subtitle', c.heroSubtitle);
+      setText('banner-title', c.bannerTitle);
+      setHtml('banner-desc', c.bannerDesc);
+      setText('banner-cta', c.bannerCta);
+      setText('steps-heading', c.stepsHeading);
+      setText('steps-subheading', c.stepsSubheading);
+
+      setText('s1-title', c.s1Title);
+      setHtml('s1-desc', c.s1Desc);
+      setHtml('s1-list', c.s1List);
+
+      setText('s2-title', c.s2Title);
+      setText('s2-desc', c.s2Desc);
+      setHtml('s2-note', c.s2Note);
+
+      setText('s3-title', c.s3Title);
+      setText('s3-desc', c.s3Desc);
+      setHtml('s3-note', c.s3Note);
+
+      setText('info1-title', c.info1Title);
+      setHtml('info1-desc', c.info1Desc);
+      setText('info2-title', c.info2Title);
+      setHtml('info2-desc', c.info2Desc);
+
+      setText('gen-title', c.genTitle);
+      setText('gen-desc', c.genDesc);
+
+      setText('lbl-req-type', c.lblReqType);
+      setText('opt-draft', c.optDraft);
+      setText('opt-official', c.optOfficial);
+      setText('lbl-stu-id', c.lblStuId);
+      setPlaceholder('in-id', c.phStuId);
+      setText('lbl-stu-name', c.lblStuName);
+      setPlaceholder('in-name', c.phStuName);
+      setText('lbl-adv-email', c.lblAdvEmail);
+      setPlaceholder('in-advisor', c.phAdvEmail);
+      setText('lbl-paper-title', c.lblPaperTitle);
+      setPlaceholder('in-title', c.phPaperTitle);
+
+      setText('lbl-send-to', c.lblSendTo);
+      setText('btn-copy-email', c.btnCopyEmail);
+      setText('lbl-out-subject', c.lblOutSubject);
+      setText('btn-copy-subject', c.btnCopySubject);
+      setText('lbl-out-body', c.lblOutBody);
+      setText('btn-copy-body', c.btnCopyBody);
+      setText('btn-copy-all', c.btnCopyAll);
+      setText('btn-open-outlook', c.btnOpenOutlook);
+
+      setText('pr-summary', c.prSummary);
+      setText('pr-label', c.prLabel);
+      setText('btn-copy-pr', c.btnCopyPr);
+
+      setText('footer-org', c.footerOrg);
+      setText('footer-sub', c.footerSub);
+
+      generateStudentEmail();
+    }
+
+    function generateStudentEmail() {
+      const type = document.getElementById('in-type').value;
+      const stuId = document.getElementById('in-id').value.trim() || (currentLang === 'en' ? '[Student ID]' : '[รหัสนิสิต]');
+      const stuName = document.getElementById('in-name').value.trim() || (currentLang === 'en' ? '[Full Name]' : '[ชื่อ-นามสกุล]');
+      const advisor = document.getElementById('in-advisor').value.trim() || (currentLang === 'en' ? '[Advisor Email]' : '[อีเมลอาจารย์ที่ปรึกษา]');
+      const title = document.getElementById('in-title').value.trim() || (currentLang === 'en' ? '[Document Title]' : '[ชื่อบทความ หรือ วิทยานิพนธ์]');
+
+      if (currentLang === 'en') {
+        const typeLabel = type === 'Official' ? 'Official Certificate Request' : 'Draft Check for Revision';
+        document.getElementById('out-subject').value = `[Turnitin - ${type}] ${typeLabel} - ${stuName} (${stuId})`;
+        document.getElementById('out-body').value = `Dear Librarian,
+
+I would like to submit my manuscript for a Turnitin similarity check. Please find the details below:
+• Request Type: ${typeLabel} (${type})
+• Full Name: ${stuName}
+• Student ID: ${stuId}
+• Document Title: ${title}
+• Advisor / Instructor Email: ${advisor}
+
+I have attached the main-body PDF file (excluding cover page, approval page, table of contents, references, and author biography) with this email.
+
+Best regards,
+${stuName}`;
+      } else {
+        const typeLabel = type === 'Official' ? 'ขอออกใบรับรองผลฉบับจริง (Official Certificate)' : 'ตรวจเพื่อแก้ไข (Draft Check)';
+        document.getElementById('out-subject').value = `[Turnitin - ${type}] ขอรับบริการตรวจความซ้ำซ้อน - ${stuName} (${stuId})`;
+        document.getElementById('out-body').value = `เรียน เจ้าหน้าที่ห้องสมุดและศูนย์เอกสารการสัตว์ฯ
+
+ขอความอนุเคราะห์ตรวจสอบความซ้ำซ้อนทางวิชาการ (Turnitin) โดยมีรายละเอียดดังนี้ครับ/ค่ะ:
+• ประเภทคำขอ: ${typeLabel}
+• ชื่อ-นามสกุล นิสิต: ${stuName}
+• รหัสนิสิต: ${stuId}
+• ชื่อผลงาน: ${title}
+• อีเมลอาจารย์ที่ปรึกษา / อาจารย์ประจำวิชา: ${advisor}
+
+ได้แนบไฟล์ PDF เฉพาะส่วนเนื้อหาหลัก (ตัดหน้าปก, หน้าอนุมัติ, สารบัญ, รายการอ้างอิง และประวัติผู้เขียนออกแล้ว) มาพร้อมกับอีเมลฉบับนี้ครับ/ค่ะ
+
+ขอแสดงความนับถือ
+${stuName}`;
+      }
+    }
+
+    function openStudentOutlook() {
+      const subject = document.getElementById('out-subject').value;
+      const body = document.getElementById('out-body').value;
+      const url = `https://outlook.office.com/mail/deeplink/compose?to=${encodeURIComponent(LIBRARY_EMAIL)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.open(url, '_blank');
+    }
+
+    function copyElementValue(id, btn) {
+      const val = document.getElementById(id).value;
+      navigator.clipboard.writeText(val).then(() => {
+        const old = btn.textContent;
+        btn.textContent = currentLang === 'en' ? 'Copied!' : 'คัดลอกแล้ว!';
+        setTimeout(() => btn.textContent = old, 1500);
+      });
+    }
+
+    function copyElementText(id, btn) {
+      const val = document.getElementById(id).textContent;
+      navigator.clipboard.writeText(val).then(() => {
+        const old = btn.textContent;
+        btn.textContent = currentLang === 'en' ? 'Copied!' : 'คัดลอกแล้ว!';
+        setTimeout(() => btn.textContent = old, 1500);
+      });
+    }
+  </script>
+</body>
+</html>
