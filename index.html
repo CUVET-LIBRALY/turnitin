@@ -142,61 +142,61 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
         <div>
-          <label id="lbl-req-type" class="block text-xs font-bold text-slate-700 mb-1">ประเภทการส่งตรวจ / Request Type *</label>
+          <label id="lbl-req-type" class="block text-xs font-bold text-slate-700 mb-1">ประเภทการส่งตรวจ *</label>
           <select id="in-type" onchange="generateStudentEmail()" class="w-full px-3 py-2 border border-slate-300 rounded-xl bg-white text-sm font-medium">
-            <option value="Draft">ตรวจเพื่อแก้ไข (Draft Check - รอบปรับปรุงเนื้อหา)</option>
-            <option value="Official">ขอออกใบรับรองผลฉบับจริง (Official Certificate - สำหรับยื่นส่งอาจารย์)</option>
+            <option id="opt-draft" value="Draft">ตรวจเพื่อแก้ไข (Draft Check - รอบปรับปรุงเนื้อหา)</option>
+            <option id="opt-official" value="Official">ขอออกใบรับรองผลฉบับจริง (Official Certificate - สำหรับยื่นส่งอาจารย์)</option>
           </select>
         </div>
         <div>
-          <label id="lbl-stu-id" class="block text-xs font-bold text-slate-700 mb-1">รหัสนิสิต / Student ID *</label>
+          <label id="lbl-stu-id" class="block text-xs font-bold text-slate-700 mb-1">รหัสนิสิต *</label>
           <input type="text" id="in-id" oninput="generateStudentEmail()" placeholder="เช่น 6631001231" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm">
         </div>
         <div>
-          <label id="lbl-stu-name" class="block text-xs font-bold text-slate-700 mb-1">ชื่อ-นามสกุล นิสิต / Full Name *</label>
-          <input type="text" id="in-name" oninput="generateStudentEmail()" placeholder="เช่น นางสาวใจดี รักเรียน หรือ Mr. John Doe" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm">
+          <label id="lbl-stu-name" class="block text-xs font-bold text-slate-700 mb-1">ชื่อ-นามสกุล นิสิต *</label>
+          <input type="text" id="in-name" oninput="generateStudentEmail()" placeholder="เช่น นางสาวใจดี รักเรียน" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm">
         </div>
         <div>
-          <label id="lbl-adv-email" class="block text-xs font-bold text-slate-700 mb-1">อีเมลอาจารย์ที่ปรึกษา / Advisor Email *</label>
+          <label id="lbl-adv-email" class="block text-xs font-bold text-slate-700 mb-1">อีเมลอาจารย์ที่ปรึกษา *</label>
           <input type="email" id="in-advisor" oninput="generateStudentEmail()" placeholder="advisor@chula.ac.th" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm">
         </div>
         <div class="md:col-span-2">
-          <label id="lbl-paper-title" class="block text-xs font-bold text-slate-700 mb-1">ชื่อบทความ / วิทยานิพนธ์ / Paper Title *</label>
-          <input type="text" id="in-title" oninput="generateStudentEmail()" placeholder="ระบุชื่อเรื่องภาษาไทยหรือภาษาอังกฤษ" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm">
+          <label id="lbl-paper-title" class="block text-xs font-bold text-slate-700 mb-1">ชื่อบทความ / วิทยานิพนธ์ *</label>
+          <input type="text" id="in-title" oninput="generateStudentEmail()" placeholder="ระบุชื่อเรื่องของผลงานวิชาการ" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm">
         </div>
       </div>
 
       <!-- Generated Output -->
       <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 space-y-3">
         <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
-          <span>ส่งถึงอีเมล / Send To: <b id="display-lib-email" class="font-mono text-pink-900 text-sm"></b></span>
-          <button type="button" onclick="copyElementText('display-lib-email', this)" class="px-2.5 py-1 bg-white border border-slate-300 hover:bg-slate-100 rounded-lg font-medium">
+          <span><span id="lbl-send-to">ส่งถึงอีเมล:</span> <b id="display-lib-email" class="font-mono text-pink-900 text-sm"></b></span>
+          <button type="button" id="btn-copy-email" onclick="copyElementText('display-lib-email', this)" class="px-2.5 py-1 bg-white border border-slate-300 hover:bg-slate-100 rounded-lg font-medium">
             คัดลอกอีเมลห้องสมุด
           </button>
         </div>
 
         <div>
           <div class="flex justify-between items-center mb-1">
-            <span class="text-xs font-bold text-slate-600">หัวข้ออีเมล / Subject</span>
-            <button type="button" onclick="copyElementValue('out-subject', this)" class="text-xs text-pink-800 hover:underline font-medium">คัดลอกหัวข้อ</button>
+            <span id="lbl-out-subject" class="text-xs font-bold text-slate-600">หัวข้ออีเมล (Subject)</span>
+            <button type="button" id="btn-copy-subject" onclick="copyElementValue('out-subject', this)" class="text-xs text-pink-800 hover:underline font-medium">คัดลอกหัวข้อ</button>
           </div>
           <input type="text" id="out-subject" readonly class="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-xs font-medium text-slate-800">
         </div>
 
         <div>
           <div class="flex justify-between items-center mb-1">
-            <span class="text-xs font-bold text-slate-600">เนื้อหาอีเมล / Email Body</span>
-            <button type="button" onclick="copyElementValue('out-body', this)" class="text-xs text-pink-800 hover:underline font-medium">คัดลอกเนื้อหา</button>
+            <span id="lbl-out-body" class="text-xs font-bold text-slate-600">เนื้อหาอีเมล (Email Body)</span>
+            <button type="button" id="btn-copy-body" onclick="copyElementValue('out-body', this)" class="text-xs text-pink-800 hover:underline font-medium">คัดลอกเนื้อหา</button>
           </div>
           <textarea id="out-body" rows="6" readonly class="w-full p-3 bg-white border border-slate-300 rounded-lg text-xs leading-relaxed text-slate-800"></textarea>
         </div>
 
         <div class="flex flex-wrap justify-end gap-2 pt-1">
-          <button type="button" onclick="copyElementValue('out-body', this)" 
+          <button type="button" id="btn-copy-all" onclick="copyElementValue('out-body', this)" 
             class="px-4 py-2.5 bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold rounded-xl transition">
             คัดลอกข้อความทั้งหมด
           </button>
-          <button type="button" onclick="openStudentOutlook()" 
+          <button type="button" id="btn-open-outlook" onclick="openStudentOutlook()" 
             class="px-5 py-2.5 bg-sky-700 hover:bg-sky-800 text-white text-xs font-bold rounded-xl shadow-sm transition">
             เปิด Outlook Web เพื่อส่งอีเมล (อย่าลืมแนบไฟล์งาน)
           </button>
@@ -204,7 +204,7 @@
       </div>
     </section>
 
-    <!-- Collapsible Staff PR Post Generator (สำหรับเจ้าหน้าที่ก๊อปปี้ไปโพสต์ Facebook / LINE) -->
+    <!-- Collapsible Staff PR Post Generator -->
     <details class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
       <summary class="text-xs font-bold text-slate-500 cursor-pointer select-none">
         สำหรับเจ้าหน้าที่: ข้อความประกาศประชาสัมพันธ์สำเร็จรูป (สำหรับโพสต์ Facebook / LINE / Instagram)
@@ -237,7 +237,7 @@ To ensure report authenticity and streamline academic submission, please follow 
 3️⃣ Official Certification: Once your score meets the requirement, reply to the same email thread to request an Official Certificate. The library will issue a bilingual cover certificate with a unique Reference ID & QR Code, and send it to you with a direct CC to your advisor.
 
 📧 ติดต่อส่งตรวจ / Submit via Email: Hathaichanok.b@chula.ac.th
-🌐 รายละเอียดเพิ่มเติม / More Info: https://vet.chula.ac.th/library#service-3</textarea>
+🌐 ขั้นตอนและสร้างคำขอตรวจ / Guide & Request Helper: https://cuvet-libraly.github.io/turnitin/</textarea>
       </div>
     </details>
 
@@ -257,9 +257,8 @@ To ensure report authenticity and streamline academic submission, please follow 
   </footer>
 
   <script>
-    // ==================== ตั้งค่าข้อมูลหลักที่นี่ ====================
     const LIBRARY_EMAIL = "Hathaichanok.b@chula.ac.th";
-    const VERIFY_PORTAL_URL = "https://script.google.com/macros/s/AKfycbyNHO_JpTEMzr8XfEl5dMMAFDWjsFtl0QvakSCZSFzZh3p9D-A6_T2LKdaqrpNb7HF7Zw/exec"; // วาง URL เว็บแอปตรวจสอบของคุณที่นี่
+    const VERIFY_PORTAL_URL = "https://script.google.com/macros/s/AKfycbyNHO_JpTEMzr8XfEl5dMMAFDWjsFtl0QvakSCZSFzZh3p9D-A6_T2LKdaqrpNb7HF7Zw/exec";
 
     let currentLang = "th";
 
@@ -291,7 +290,26 @@ To ensure report authenticity and streamline academic submission, please follow 
         info2Title: "ระบบตรวจสอบความถูกต้องผ่าน QR Code",
         info2Desc: "เอกสารฉบับรับรองผลอย่างเป็นทางการจะมี <b>รหัสอ้างอิง (Ref. ID)</b> และ <b>QR Code</b> ประจำเอกสาร คณาจารย์สามารถสแกนเพื่อตรวจสอบค่าเปอร์เซ็นต์จริงและประวัติการส่งตรวจย้อนหลังทั้งหมดจากฐานข้อมูลห้องสมุดได้ทันที",
         genTitle: "เครื่องมือสร้างข้อความส่งอีเมลขอตรวจ Turnitin (สำหรับนิสิต)",
-        genDesc: "กรอกข้อมูลด้านล่างเพื่อสร้างข้อความส่งอีเมลที่ถูกต้องครบถ้วน ลดความล่าช้าในการตรวจสอบ"
+        genDesc: "กรอกข้อมูลด้านล่างเพื่อสร้างข้อความส่งอีเมลที่ถูกต้องครบถ้วน ลดความล่าช้าในการตรวจสอบ",
+        lblReqType: "ประเภทการส่งตรวจ *",
+        optDraft: "ตรวจเพื่อแก้ไข (Draft Check - รอบปรับปรุงเนื้อหา)",
+        optOfficial: "ขอออกใบรับรองผลฉบับจริง (Official Certificate - สำหรับยื่นส่งอาจารย์)",
+        lblStuId: "รหัสนิสิต *",
+        phStuId: "เช่น 6631001231",
+        lblStuName: "ชื่อ-นามสกุล นิสิต *",
+        phStuName: "เช่น นางสาวใจดี รักเรียน",
+        lblAdvEmail: "อีเมลอาจารย์ที่ปรึกษา *",
+        phAdvEmail: "advisor@chula.ac.th",
+        lblPaperTitle: "ชื่อบทความ / วิทยานิพนธ์ *",
+        phPaperTitle: "ระบุชื่อเรื่องของผลงานวิชาการ",
+        lblSendTo: "ส่งถึงอีเมล:",
+        btnCopyEmail: "คัดลอกอีเมลห้องสมุด",
+        lblOutSubject: "หัวข้ออีเมล (Subject)",
+        btnCopySubject: "คัดลอกหัวข้อ",
+        lblOutBody: "เนื้อหาอีเมล (Email Body)",
+        btnCopyBody: "คัดลอกเนื้อหา",
+        btnCopyAll: "คัดลอกข้อความทั้งหมด",
+        btnOpenOutlook: "เปิด Outlook Web เพื่อส่งอีเมล (อย่าลืมแนบไฟล์งาน)"
       },
       en: {
         verifyBtn: "Verify Certificate (QR)",
@@ -320,14 +338,32 @@ To ensure report authenticity and streamline academic submission, please follow 
         info2Title: "Online QR Code Verification",
         info2Desc: "Every official report includes a unique <b>Reference ID</b> and <b>QR Code</b>. Advisors and instructors can scan the QR Code to verify the authentic score and complete submission history directly from the library database.",
         genTitle: "Student Email Request Generator",
-        genDesc: "Fill in your details below to automatically generate a complete email request for the library."
+        genDesc: "Fill in your details below to automatically generate a complete email request for the library.",
+        lblReqType: "Request Type *",
+        optDraft: "Draft Check (For revision / re-checking)",
+        optOfficial: "Official Certificate (For final academic submission)",
+        lblStuId: "Student ID *",
+        phStuId: "e.g. 6631001231",
+        lblStuName: "Student Full Name *",
+        phStuName: "e.g. Mr. John Doe",
+        lblAdvEmail: "Advisor / Instructor Email *",
+        phAdvEmail: "advisor@chula.ac.th",
+        lblPaperTitle: "Manuscript / Thesis Title *",
+        phPaperTitle: "Enter your manuscript or thesis title",
+        lblSendTo: "Send To:",
+        btnCopyEmail: "Copy Library Email",
+        lblOutSubject: "Email Subject",
+        btnCopySubject: "Copy Subject",
+        lblOutBody: "Email Body",
+        btnCopyBody: "Copy Body",
+        btnCopyAll: "Copy Full Message",
+        btnOpenOutlook: "Open Outlook Web to Send (Remember to Attach File)"
       }
     };
 
     window.onload = function() {
       document.getElementById('display-lib-email').textContent = LIBRARY_EMAIL;
       document.getElementById('footer-email').textContent = LIBRARY_EMAIL;
-      document.getElementById('btn-verify-portal').href = VERIFY_PORTAL_URL;
       setLang('th');
       generateStudentEmail();
     };
@@ -343,7 +379,10 @@ To ensure report authenticity and streamline academic submission, please follow 
         ? 'px-3 py-1 text-xs rounded-lg bg-white text-pink-950 font-bold transition'
         : 'px-3 py-1 text-xs rounded-lg text-pink-200 hover:text-white font-bold transition';
 
-      document.getElementById('btn-verify-portal').innerHTML = `<span>${c.verifyBtn}</span>`;
+      const verifyBtn = document.getElementById('btn-verify-portal');
+      verifyBtn.innerHTML = `<span>${c.verifyBtn}</span>`;
+      verifyBtn.href = lang === 'en' ? `${VERIFY_PORTAL_URL}?lang=en` : VERIFY_PORTAL_URL;
+
       document.getElementById('hero-title').textContent = c.heroTitle;
       document.getElementById('hero-subtitle').textContent = c.heroSubtitle;
       document.getElementById('banner-title').textContent = c.bannerTitle;
@@ -372,15 +411,38 @@ To ensure report authenticity and streamline academic submission, please follow 
       document.getElementById('gen-title').textContent = c.genTitle;
       document.getElementById('gen-desc').textContent = c.genDesc;
 
+      // Form labels & placeholders
+      document.getElementById('lbl-req-type').textContent = c.lblReqType;
+      document.getElementById('opt-draft').textContent = c.optDraft;
+      document.getElementById('opt-official').textContent = c.optOfficial;
+      document.getElementById('lbl-stu-id').textContent = c.lblStuId;
+      document.getElementById('in-id').placeholder = c.phStuId;
+      document.getElementById('lbl-stu-name').textContent = c.lblStuName;
+      document.getElementById('in-name').placeholder = c.phStuName;
+      document.getElementById('lbl-adv-email').textContent = c.lblAdvEmail;
+      document.getElementById('in-advisor').placeholder = c.phAdvEmail;
+      document.getElementById('lbl-paper-title').textContent = c.lblPaperTitle;
+      document.getElementById('in-title').placeholder = c.phPaperTitle;
+
+      // Output box labels & buttons
+      document.getElementById('lbl-send-to').textContent = c.lblSendTo;
+      document.getElementById('btn-copy-email').textContent = c.btnCopyEmail;
+      document.getElementById('lbl-out-subject').textContent = c.lblOutSubject;
+      document.getElementById('btn-copy-subject').textContent = c.btnCopySubject;
+      document.getElementById('lbl-out-body').textContent = c.lblOutBody;
+      document.getElementById('btn-copy-body').textContent = c.btnCopyBody;
+      document.getElementById('btn-copy-all').textContent = c.btnCopyAll;
+      document.getElementById('btn-open-outlook').textContent = c.btnOpenOutlook;
+
       generateStudentEmail();
     }
 
     function generateStudentEmail() {
       const type = document.getElementById('in-type').value;
-      const stuId = document.getElementById('in-id').value.trim() || '[รหัสนิสิต / Student ID]';
-      const stuName = document.getElementById('in-name').value.trim() || '[ชื่อ-นามสกุล / Full Name]';
-      const advisor = document.getElementById('in-advisor').value.trim() || '[อีเมลอาจารย์ที่ปรึกษา / Advisor Email]';
-      const title = document.getElementById('in-title').value.trim() || '[ชื่อบทความ หรือ วิทยานิพนธ์ / Document Title]';
+      const stuId = document.getElementById('in-id').value.trim() || (currentLang === 'en' ? '[Student ID]' : '[รหัสนิสิต]');
+      const stuName = document.getElementById('in-name').value.trim() || (currentLang === 'en' ? '[Full Name]' : '[ชื่อ-นามสกุล]');
+      const advisor = document.getElementById('in-advisor').value.trim() || (currentLang === 'en' ? '[Advisor Email]' : '[อีเมลอาจารย์ที่ปรึกษา]');
+      const title = document.getElementById('in-title').value.trim() || (currentLang === 'en' ? '[Document Title]' : '[ชื่อบทความ หรือ วิทยานิพนธ์]');
 
       if (currentLang === 'en') {
         const typeLabel = type === 'Official' ? 'Official Certificate Request' : 'Draft Check for Revision';
