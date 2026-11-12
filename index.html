@@ -390,7 +390,9 @@
       const verifyBtn = document.getElementById('btn-verify-portal');
       if (verifyBtn) {
         verifyBtn.textContent = c.verifyBtn;
-        verifyBtn.href = lang === 'en' ? `${VERIFY_PORTAL_URL}?lang=en` : VERIFY_PORTAL_URL;
+        verifyBtn.href = lang === 'en'
+          ? `${VERIFY_PORTAL_URL}?view=verify&lang=en`
+          : `${VERIFY_PORTAL_URL}?view=verify`;
       }
 
       setText('hero-title', c.heroTitle);
@@ -410,7 +412,7 @@
       setHtml('s2-note', c.s2Note);
 
       setText('s3-title', c.s3Title);
-      setText('s3-desc', c.s3Desc);
+      setHtml('s3-desc', c.s3Desc);
       setHtml('s3-note', c.s3Note);
 
       setText('info1-title', c.info1Title);
