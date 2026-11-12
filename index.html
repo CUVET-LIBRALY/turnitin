@@ -208,43 +208,6 @@
       </div>
     </section>
 
-    <!-- Collapsible Staff PR Post Generator -->
-    <details class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-      <summary id="pr-summary" class="text-xs font-bold text-slate-500 cursor-pointer select-none">
-        สำหรับเจ้าหน้าที่: ข้อความประกาศประชาสัมพันธ์สำเร็จรูป (สำหรับโพสต์ Facebook / LINE / Instagram)
-      </summary>
-      <div class="mt-4 pt-4 border-t border-slate-100 space-y-3">
-        <div class="flex justify-between items-center">
-          <span id="pr-label" class="text-xs font-bold text-slate-700">แคปชันประชาสัมพันธ์ 2 ภาษา (พร้อมคัดลอกโพสต์)</span>
-          <button type="button" id="btn-copy-pr" onclick="copyElementValue('pr-social-post', this)" class="px-3 py-1.5 bg-pink-800 hover:bg-pink-900 text-white text-xs font-medium rounded-lg cursor-pointer">
-            คัดลอกโพสต์ประชาสัมพันธ์
-          </button>
-        </div>
-        <textarea id="pr-social-post" rows="13" readonly class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs leading-relaxed text-slate-700">📢 แจ้งปรับปรุงขั้นตอนการขอรับบริการตรวจสอบความซ้ำซ้อนทางวิชาการ (Turnitin)
-ห้องสมุดและศูนย์เอกสารการสัตว์ คณะสัตวแพทยศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย
-
-เพื่อให้การรับรองผลการตรวจมีความถูกต้อง รวดเร็ว และป้องกันการปลอมแปลงเอกสาร ห้องสมุดฯ ขอแจ้งแนวปฏิบัติการส่งตรวจ Turnitin ดังนี้ครับ:
-
-1️⃣ เตรียมไฟล์ PDF และส่งคำขอทางอีเมล: แนบไฟล์ PDF (.pdf) เฉพาะส่วนเนื้อหาหลักเท่านั้น (กรุณาตัดหน้าปก, หน้าอนุมัติ, สารบัญ, รายการอ้างอิง และประวัติผู้เขียนออกก่อนส่ง) พร้อมแจ้ง ชื่อ-รหัสนิสิต, ชื่อเรื่อง, อีเมลอาจารย์ที่ปรึกษา และระบุประเภทคำขอ (Draft หรือ Official)
-2️⃣ รอบตรวจเพื่อแก้ไข (Draft Check): นิสิตสามารถส่งตรวจซ้ำเพื่อปรับปรุงเนื้อหาได้ (ตั้งค่าแบบ No Repository ไม่เก็บไฟล์ลงฐานข้อมูล) โดยผลตรวจรอบ Draft จะส่งกลับให้นิสิตเพียงคนเดียว
-3️⃣ รอบขอออกใบรับรองฉบับจริง (Official Certificate): เมื่อได้ค่า % ตามเกณฑ์แล้ว ให้ตอบกลับอีเมลเดิมเพื่อขอออกใบรับรองฉบับจริง ห้องสมุดจะออกหน้าปกรับรองที่มี รหัสอ้างอิง (Ref. ID) และ QR Code พร้อมส่งอีเมลแจ้งผลให้นิสิตและสำเนาถึง (CC) อาจารย์ที่ปรึกษาโดยตรง
-
-----------------------------------------
-
-📢 Updated Procedure for Turnitin Similarity Checking Service
-The Veterinary Library and Information Center, Chulalongkorn University
-
-To ensure report authenticity and streamline academic submission, please follow our 3-step Turnitin checking process:
-
-1️⃣ Prepare PDF & Submit via Email: Attach a PDF file (.pdf) containing the main body content only (please exclude cover page, approval page, table of contents, references/bibliography, and author biography), along with your Full Name, Student ID, Paper Title, Advisor's Email, and Request Type (Draft or Official).
-2️⃣ Draft Check (For Revision): You may re-submit revised drafts (checked under No Repository). Draft reports are sent solely to the student for revision purposes.
-3️⃣ Official Certification: Once your score meets the requirement, reply to the same email thread to request an Official Certificate. The library will issue a bilingual cover certificate with a unique Reference ID & QR Code, and send it to you with a direct CC to your advisor.
-
-📧 ติดต่อส่งตรวจ / Submit via Email: Hathaichanok.b@chula.ac.th
-🌐 ขั้นตอนและสร้างคำขอตรวจ / Guide & Request Helper: https://cuvet-libraly.github.io/turnitin/</textarea>
-      </div>
-    </details>
-
   </main>
 
   <!-- Footer -->
@@ -315,9 +278,6 @@ To ensure report authenticity and streamline academic submission, please follow 
         btnCopyBody: "คัดลอกเนื้อหา",
         btnCopyAll: "คัดลอกข้อความทั้งหมด",
         btnOpenOutlook: "เปิด Outlook Web เพื่อส่งอีเมล (อย่าลืมแนบไฟล์ PDF เนื้อหาหลัก)",
-        prSummary: "สำหรับเจ้าหน้าที่: ข้อความประกาศประชาสัมพันธ์สำเร็จรูป (สำหรับโพสต์ Facebook / LINE / Instagram)",
-        prLabel: "แคปชันประชาสัมพันธ์ 2 ภาษา (พร้อมคัดลอกโพสต์)",
-        btnCopyPr: "คัดลอกโพสต์ประชาสัมพันธ์",
         footerOrg: "ห้องสมุดและศูนย์เอกสารการสัตว์ คณะสัตวแพทยศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย",
         footerSub: "The Veterinary Library and Information Center, Chulalongkorn University"
       },
@@ -369,9 +329,6 @@ To ensure report authenticity and streamline academic submission, please follow 
         btnCopyBody: "Copy Body",
         btnCopyAll: "Copy Full Message",
         btnOpenOutlook: "Open Outlook Web to Send (Attach Main-Body PDF)",
-        prSummary: "For Library Staff: Ready-to-Post Announcement Template (Facebook / LINE / Instagram)",
-        prLabel: "Bilingual Announcement Caption (Ready to Copy)",
-        btnCopyPr: "Copy Announcement Post",
         footerOrg: "The Veterinary Library and Information Center, Chulalongkorn University",
         footerSub: "Faculty of Veterinary Science, Chulalongkorn University, Bangkok, Thailand"
       }
@@ -484,10 +441,6 @@ To ensure report authenticity and streamline academic submission, please follow 
       setText('btn-copy-body', c.btnCopyBody);
       setText('btn-copy-all', c.btnCopyAll);
       setText('btn-open-outlook', c.btnOpenOutlook);
-
-      setText('pr-summary', c.prSummary);
-      setText('pr-label', c.prLabel);
-      setText('btn-copy-pr', c.btnCopyPr);
 
       setText('footer-org', c.footerOrg);
       setText('footer-sub', c.footerSub);
