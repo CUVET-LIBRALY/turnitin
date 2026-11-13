@@ -113,8 +113,8 @@
       </div>
     </section>
 
-    <!-- Key Information & FAQ Grid -->
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    <!-- Key Information & FAQ Grid (3 Balanced Columns) -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-5">
       <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
         <h4 id="info1-title" class="font-bold text-base text-slate-800 mb-2">การแสดงผลค่า AI Writing Detection</h4>
         <p id="info1-desc" class="text-sm text-slate-600 leading-relaxed">
@@ -125,6 +125,12 @@
         <h4 id="info2-title" class="font-bold text-base text-slate-800 mb-2">ระบบตรวจสอบความถูกต้องผ่าน QR Code</h4>
         <p id="info2-desc" class="text-sm text-slate-600 leading-relaxed">
           เอกสารฉบับรับรองผลอย่างเป็นทางการจะมี <b>รหัสอ้างอิง (Ref. ID)</b> และ <b>QR Code</b> ประจำเอกสาร คณาจารย์สามารถสแกนเพื่อตรวจสอบค่าเปอร์เซ็นต์จริงและประวัติการส่งตรวจย้อนหลังทั้งหมดจากฐานข้อมูลห้องสมุดได้ทันที
+        </p>
+      </div>
+      <div class="bg-white rounded-2xl border border-rose-200 p-6 shadow-sm">
+        <h4 id="info3-title" class="font-bold text-base text-rose-950 mb-2">การขอยกเลิกใบรับรองเดิมเพื่อแก้ไขใหม่</h4>
+        <p id="info3-desc" class="text-sm text-slate-600 leading-relaxed">
+          หากออกใบรับรองฉบับจริง (Official) ไปแล้ว แต่ต้องการปรับปรุงเนื้อหาและส่งตรวจใหม่ ให้เลือกประเภทคำขอเป็น <b>"ขอยกเลิกใบรับรองเดิม และส่งตรวจแก้ไขใหม่"</b> พร้อมระบุ <b>เลขที่อ้างอิงเดิม (Ref. ID)</b> เพื่อให้ห้องสมุดยกเลิกใบรับรองฉบับเก่าในระบบก่อนดำเนินการตรวจรอบใหม่
         </p>
       </div>
     </section>
@@ -270,6 +276,8 @@
         info1Desc: "ในใบรับรองจะแสดงทั้งค่า <b>Similarity Index (%)</b> และค่า <b>AI Writing Detection</b> โดยตามมาตรฐานของระบบ Turnitin หากตรวจพบเนื้อหาเข้าข่าย AI ต่ำกว่า 20% (1%–19%) ระบบจะแสดงสัญลักษณ์ <b>&lt; 20% (*%)</b> และสำหรับเอกสารภาษาไทยจะแสดงเป็น <b>N/A</b>",
         info2Title: "ระบบตรวจสอบความถูกต้องผ่าน QR Code",
         info2Desc: "เอกสารฉบับรับรองผลอย่างเป็นทางการจะมี <b>รหัสอ้างอิง (Ref. ID)</b> และ <b>QR Code</b> ประจำเอกสาร คณาจารย์สามารถสแกนเพื่อตรวจสอบค่าเปอร์เซ็นต์จริงและประวัติการส่งตรวจย้อนหลังทั้งหมดจากฐานข้อมูลห้องสมุดได้ทันที",
+        info3Title: "การขอยกเลิกใบรับรองเดิมเพื่อแก้ไขใหม่",
+        info3Desc: "หากออกใบรับรองฉบับจริง (Official) ไปแล้ว แต่ต้องการปรับปรุงเนื้อหาและส่งตรวจใหม่ ให้เลือกประเภทคำขอเป็น <b>\"ขอยกเลิกใบรับรองเดิม และส่งตรวจแก้ไขใหม่\"</b> พร้อมระบุ <b>เลขที่อ้างอิงเดิม (Ref. ID)</b> เพื่อให้ห้องสมุดยกเลิกใบรับรองฉบับเก่าในระบบก่อนดำเนินการตรวจรอบใหม่",
         genTitle: "เครื่องมือสร้างข้อความส่งอีเมลขอตรวจ Turnitin (สำหรับนิสิต)",
         genDesc: "กรอกข้อมูลด้านล่างเพื่อสร้างข้อความส่งอีเมลที่ถูกต้องครบถ้วน ลดความล่าช้าในการตรวจสอบ",
         lblReqType: "ประเภทการส่งตรวจ *",
@@ -327,6 +335,8 @@
         info1Desc: "The certificate displays both <b>Similarity Index (%)</b> and <b>AI Writing Detection</b>. Per Turnitin's standard, AI scores between 1%–19% are displayed as <b>&lt; 20% (*%)</b>, and non-supported languages (such as Thai) are marked as <b>N/A</b>.",
         info2Title: "Online QR Code Verification",
         info2Desc: "Every official report includes a unique <b>Reference ID</b> and <b>QR Code</b>. Advisors and instructors can scan the QR Code to verify the authentic score and complete submission history directly from the library database.",
+        info3Title: "Cancelling an Official Certificate for Revision",
+        info3Desc: "If an Official Certificate has already been issued and you need to revise and re-submit your manuscript, please select <b>\"Cancel Previous Official Certificate & Re-check Draft\"</b> and provide your previous <b>Reference ID</b> so the library can revoke the old certificate before re-checking.",
         genTitle: "Student Email Request Generator",
         genDesc: "Fill in your details below to automatically generate a complete email request for the library.",
         lblReqType: "Request Type *",
@@ -453,6 +463,8 @@
       setHtml('info1-desc', c.info1Desc);
       setText('info2-title', c.info2Title);
       setHtml('info2-desc', c.info2Desc);
+      setText('info3-title', c.info3Title);
+      setHtml('info3-desc', c.info3Desc);
 
       setText('gen-title', c.genTitle);
       setText('gen-desc', c.genDesc);
