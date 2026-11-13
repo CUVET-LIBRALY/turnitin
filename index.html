@@ -145,13 +145,22 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
-        <div>
+        <div class="md:col-span-2">
           <label id="lbl-req-type" class="block text-xs font-bold text-slate-700 mb-1">ประเภทการส่งตรวจ *</label>
-          <select id="in-type" onchange="generateStudentEmail()" class="w-full px-3 py-2 border border-slate-300 rounded-xl bg-white text-sm font-medium">
+          <select id="in-type" onchange="handleStudentTypeChange()" class="w-full px-3 py-2.5 border border-slate-300 rounded-xl bg-white text-sm font-medium">
             <option id="opt-draft" value="Draft">ตรวจเพื่อแก้ไข (Draft Check - รอบปรับปรุงเนื้อหา)</option>
             <option id="opt-official" value="Official">ขอออกใบรับรองผลฉบับจริง (Official Certificate - สำหรับยื่นส่งอาจารย์)</option>
+            <option id="opt-cancel" value="CancelAndDraft">ขอยกเลิกใบรับรองเดิม และส่งตรวจแก้ไขใหม่ (Cancel Official & Re-check Draft)</option>
           </select>
         </div>
+
+        <!-- ช่องกรอก Reference ID เดิม (แสดงเฉพาะเมื่อเลือกขอยกเลิกใบรับรองเดิม) -->
+        <div id="box-old-ref" class="hidden md:col-span-2 bg-rose-50 border border-rose-200 rounded-xl p-3.5">
+          <label id="lbl-old-ref" class="block text-xs font-bold text-rose-900 mb-1">เลขที่อ้างอิงเดิม (Reference ID) ที่ต้องการยกเลิก *</label>
+          <input type="text" id="in-old-ref" oninput="generateStudentEmail()" placeholder="เช่น TRN-2569-0003-E8 (ดูได้บนหน้าปกรับรองฉบับเดิม)" class="w-full px-3 py-2 bg-white border border-rose-300 rounded-xl text-sm font-mono uppercase">
+          <p id="note-old-ref" class="text-[11px] text-rose-700 mt-1">* ห้องสมุดจะยกเลิกใบรับรองเลขที่เดิมในระบบทันที และดำเนินการตรวจไฟล์ฉบับแก้ไขใหม่ในสถานะ Draft ให้ครับ</p>
+        </div>
+
         <div>
           <label id="lbl-stu-id" class="block text-xs font-bold text-slate-700 mb-1">รหัสนิสิต *</label>
           <input type="text" id="in-id" oninput="generateStudentEmail()" placeholder="เช่น 6631001231" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm">
@@ -168,7 +177,7 @@
           <label id="lbl-adv-email" class="block text-xs font-bold text-slate-700 mb-1">อีเมลอาจารย์ที่ปรึกษา *</label>
           <input type="email" id="in-advisor" oninput="generateStudentEmail()" placeholder="advisor@chula.ac.th" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm">
         </div>
-        <div>
+        <div class="md:col-span-2">
           <label id="lbl-paper-title" class="block text-xs font-bold text-slate-700 mb-1">ชื่อบทความ / วิทยานิพนธ์ *</label>
           <input type="text" id="in-title" oninput="generateStudentEmail()" placeholder="ระบุชื่อเรื่องของผลงานวิชาการ" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm">
         </div>
@@ -196,7 +205,7 @@
             <span id="lbl-out-body" class="text-xs font-bold text-slate-600">เนื้อหาอีเมล (Email Body)</span>
             <button type="button" id="btn-copy-body" onclick="copyElementValue('out-body', this)" class="text-xs text-pink-800 hover:underline font-medium cursor-pointer">คัดลอกเนื้อหา</button>
           </div>
-          <textarea id="out-body" rows="7" readonly class="w-full p-3 bg-white border border-slate-300 rounded-lg text-xs leading-relaxed text-slate-800"></textarea>
+          <textarea id="out-body" rows="8" readonly class="w-full p-3 bg-white border border-slate-300 rounded-lg text-xs leading-relaxed text-slate-800"></textarea>
         </div>
 
         <div class="flex flex-wrap justify-end gap-2 pt-1">
@@ -266,6 +275,10 @@
         lblReqType: "ประเภทการส่งตรวจ *",
         optDraft: "ตรวจเพื่อแก้ไข (Draft Check - รอบปรับปรุงเนื้อหา)",
         optOfficial: "ขอออกใบรับรองผลฉบับจริง (Official Certificate - สำหรับยื่นส่งอาจารย์)",
+        optCancel: "ขอยกเลิกใบรับรองเดิม และส่งตรวจแก้ไขใหม่ (Cancel Official & Re-check Draft)",
+        lblOldRef: "เลขที่อ้างอิงเดิม (Reference ID) ที่ต้องการยกเลิก *",
+        phOldRef: "เช่น TRN-2569-0003-E8 (ดูได้บนหน้าปกรับรองฉบับเดิม)",
+        noteOldRef: "* ห้องสมุดจะยกเลิกใบรับรองเลขที่เดิมในระบบทันที และดำเนินการตรวจไฟล์ฉบับแก้ไขใหม่ในสถานะ Draft ให้ครับ",
         lblStuId: "รหัสนิสิต *",
         phStuId: "เช่น 6631001231",
         lblStuName: "ชื่อ-นามสกุล นิสิต *",
@@ -319,6 +332,10 @@
         lblReqType: "Request Type *",
         optDraft: "Draft Check (For revision / re-checking)",
         optOfficial: "Official Certificate (For final academic submission)",
+        optCancel: "Cancel Previous Official Certificate & Re-check Draft",
+        lblOldRef: "Previous Reference ID to Cancel *",
+        phOldRef: "e.g. TRN-2569-0003-E8 (found on the previous cover certificate)",
+        noteOldRef: "* The library will immediately revoke the previous certificate in the database and re-check your revised manuscript as a Draft.",
         lblStuId: "Student ID *",
         phStuId: "e.g. 6631001231",
         lblStuName: "Student Full Name *",
@@ -364,6 +381,15 @@
       const initialLang = (urlParams.get('lang') || '').toLowerCase() === 'en' ? 'en' : 'th';
       setLang(initialLang);
     });
+
+    function handleStudentTypeChange() {
+      const type = document.getElementById('in-type').value;
+      const oldRefBox = document.getElementById('box-old-ref');
+      if (oldRefBox) {
+        oldRefBox.classList.toggle('hidden', type !== 'CancelAndDraft');
+      }
+      generateStudentEmail();
+    }
 
     function setLang(lang) {
       currentLang = lang;
@@ -434,6 +460,10 @@
       setText('lbl-req-type', c.lblReqType);
       setText('opt-draft', c.optDraft);
       setText('opt-official', c.optOfficial);
+      setText('opt-cancel', c.optCancel);
+      setText('lbl-old-ref', c.lblOldRef);
+      setPlaceholder('in-old-ref', c.phOldRef);
+      setText('note-old-ref', c.noteOldRef);
       setText('lbl-stu-id', c.lblStuId);
       setPlaceholder('in-id', c.phStuId);
       setText('lbl-stu-name', c.lblStuName);
@@ -462,6 +492,7 @@
 
     function generateStudentEmail() {
       const type = document.getElementById('in-type').value;
+      const oldRef = document.getElementById('in-old-ref').value.trim().toUpperCase() || (currentLang === 'en' ? '[Previous Reference ID]' : '[เลขที่อ้างอิงเดิม เช่น TRN-2569-XXXX-XX]');
       const stuId = document.getElementById('in-id').value.trim() || (currentLang === 'en' ? '[Student ID]' : '[รหัสนิสิต]');
       const stuName = document.getElementById('in-name').value.trim() || (currentLang === 'en' ? '[Full Name]' : '[ชื่อ-นามสกุล]');
       const stuPhone = document.getElementById('in-phone').value.trim() || (currentLang === 'en' ? '[Phone Number]' : '[เบอร์โทรศัพท์]');
@@ -469,9 +500,27 @@
       const title = document.getElementById('in-title').value.trim() || (currentLang === 'en' ? '[Document Title]' : '[ชื่อบทความ หรือ วิทยานิพนธ์]');
 
       if (currentLang === 'en') {
-        const typeLabel = type === 'Official' ? 'Official Certificate Request' : 'Draft Check for Revision';
-        document.getElementById('out-subject').value = `[Turnitin - ${type}] ${typeLabel} - ${stuName} (${stuId})`;
-        document.getElementById('out-body').value = `Dear Librarian,
+        if (type === 'CancelAndDraft') {
+          document.getElementById('out-subject').value = `[Turnitin - Cancel & Re-check] Cancel Ref: ${oldRef} & Submit Revised Draft - ${stuName} (${stuId})`;
+          document.getElementById('out-body').value = `Dear Librarian,
+
+I would like to request the cancellation of my previous Official Certificate and submit a revised manuscript for a new Draft Check. Please find the details below:
+• Request Type: Cancel Previous Official Certificate & Re-check Draft
+• Previous Reference ID to Cancel: ${oldRef}
+• Full Name: ${stuName}
+• Student ID: ${stuId}
+• Document Title: ${title}
+• Advisor / Instructor Email: ${advisor}
+
+I have attached the revised main-body PDF file (excluding cover page, approval page, table of contents, references, and author biography) with this email.
+
+Best regards,
+${stuName}
+Tel: ${stuPhone}`;
+        } else {
+          const typeLabel = type === 'Official' ? 'Official Certificate Request' : 'Draft Check for Revision';
+          document.getElementById('out-subject').value = `[Turnitin - ${type}] ${typeLabel} - ${stuName} (${stuId})`;
+          document.getElementById('out-body').value = `Dear Librarian,
 
 I would like to submit my manuscript for a Turnitin similarity check. Please find the details below:
 • Request Type: ${typeLabel} (${type})
@@ -485,10 +534,29 @@ I have attached the main-body PDF file (excluding cover page, approval page, tab
 Best regards,
 ${stuName}
 Tel: ${stuPhone}`;
+        }
       } else {
-        const typeLabel = type === 'Official' ? 'ขอออกใบรับรองผลฉบับจริง (Official Certificate)' : 'ตรวจเพื่อแก้ไข (Draft Check)';
-        document.getElementById('out-subject').value = `[Turnitin - ${type}] ขอรับบริการตรวจความซ้ำซ้อน - ${stuName} (${stuId})`;
-        document.getElementById('out-body').value = `เรียน เจ้าหน้าที่ห้องสมุดและศูนย์เอกสารการสัตว์ฯ
+        if (type === 'CancelAndDraft') {
+          document.getElementById('out-subject').value = `[Turnitin - ขอยกเลิกใบรับรองเดิม & ตรวจแก้ไข] ยกเลิกเลขที่ ${oldRef} - ${stuName} (${stuId})`;
+          document.getElementById('out-body').value = `เรียน เจ้าหน้าที่ห้องสมุดและศูนย์เอกสารการสัตว์ฯ
+
+ขอความอนุเคราะห์ยกเลิกใบรับรองผลการตรวจสอบความซ้ำซ้อนฉบับเดิม และขอส่งไฟล์ฉบับปรับปรุงแก้ไขเพื่อตรวจรอบ Draft ใหม่ โดยมีรายละเอียดดังนี้ครับ/ค่ะ:
+• ประเภทคำขอ: ขอยกเลิกใบรับรองเดิม และส่งตรวจแก้ไขใหม่ (Cancel Official & Re-check Draft)
+• เลขที่อ้างอิงเดิม (Reference ID) ที่ต้องการยกเลิก: ${oldRef}
+• ชื่อ-นามสกุล นิสิต: ${stuName}
+• รหัสนิสิต: ${stuId}
+• ชื่อผลงาน: ${title}
+• อีเมลอาจารย์ที่ปรึกษา / อาจารย์ประจำวิชา: ${advisor}
+
+ได้แนบไฟล์ PDF ฉบับแก้ไขเฉพาะส่วนเนื้อหาหลัก (ตัดหน้าปก, หน้าอนุมัติ, สารบัญ, รายการอ้างอิง และประวัติผู้เขียนออกแล้ว) มาพร้อมกับอีเมลฉบับนี้ครับ/ค่ะ
+
+ขอแสดงความนับถือ
+${stuName}
+เบอร์โทรศัพท์: ${stuPhone}`;
+        } else {
+          const typeLabel = type === 'Official' ? 'ขอออกใบรับรองผลฉบับจริง (Official Certificate)' : 'ตรวจเพื่อแก้ไข (Draft Check)';
+          document.getElementById('out-subject').value = `[Turnitin - ${type}] ขอรับบริการตรวจความซ้ำซ้อน - ${stuName} (${stuId})`;
+          document.getElementById('out-body').value = `เรียน เจ้าหน้าที่ห้องสมุดและศูนย์เอกสารการสัตว์ฯ
 
 ขอความอนุเคราะห์ตรวจสอบความซ้ำซ้อนทางวิชาการ (Turnitin) โดยมีรายละเอียดดังนี้ครับ/ค่ะ:
 • ประเภทคำขอ: ${typeLabel}
@@ -502,6 +570,7 @@ Tel: ${stuPhone}`;
 ขอแสดงความนับถือ
 ${stuName}
 เบอร์โทรศัพท์: ${stuPhone}`;
+        }
       }
     }
 
