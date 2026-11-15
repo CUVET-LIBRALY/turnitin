@@ -253,7 +253,7 @@
 
   <script>
     const LIBRARY_EMAIL = "Hathaichanok.b@chula.ac.th";
-    const VERIFY_PORTAL_URL = "https://script.google.com/macros/s/AKfycbyNHO_JpTEMzr8XfEl5dMMAFDWjsFtl0QvakSCZSFzZh3p9D-A6_T2LKdaqrpNb7HF7Zw/exec";
+    const VERIFY_PORTAL_URL = "https://cuvet-libraly.github.io/turnitin/verify.html";
 
     let currentLang = "th";
 
@@ -448,8 +448,8 @@
       if (verifyBtn) {
         verifyBtn.textContent = c.verifyBtn;
         verifyBtn.href = lang === 'en'
-          ? `${VERIFY_PORTAL_URL}?view=verify&lang=en`
-          : `${VERIFY_PORTAL_URL}?view=verify`;
+          ? `${VERIFY_PORTAL_URL}?lang=en`
+          : VERIFY_PORTAL_URL;
       }
 
       setText('hero-title', c.heroTitle);
