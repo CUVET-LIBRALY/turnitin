@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">ตรวจสอบใบรับรอง Turnitin | ห้องสมุดและศูนย์เอกสารการสัตว์ คณะสัตวแพทยศาสตร์ จุฬาฯ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Sarabun', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <nav class="bg-gradient-to-r from-pink-950 via-pink-900 to-rose-900 text-white shadow-md">
+    <div class="max-w-4xl mx-auto px-4 py-3.5 flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center font-extrabold text-lg border border-white/20 shrink-0">T</div>
+        <div>
+          <h1 id="nav-title" class="font-bold text-base leading-tight">ระบบตรวจสอบความถูกต้องใบรับรอง Turnitin</h1>
+          <p id="nav-subtitle" class="text-xs text-pink-200">ห้องสมุดและศูนย์เอกสารการสัตว์ คณะสัตวแพทยศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 text-sm">
+        <a id="nav-home" href="./index.html" class="px-3 py-1.5 rounded-xl bg-white/15 hover:bg-white/25 text-xs font-semibold border border-white/20 transition">
+          หน้าหลัก / ขอรับบริการ
+        </a>
+        <div class="flex bg-black/30 rounded-xl p-0.5 border border-white/15">
+          <button onclick="setLanguage('th')" id="lang-th" class="px-2.5 py-1 text-xs rounded-lg bg-white text-pink-950 font-bold transition cursor-pointer">ไทย</button>
+          <button onclick="setLanguage('en')" id="lang-en" class="px-2.5 py-1 text-xs rounded-lg text-pink-200 hover:text-white font-bold transition cursor-pointer">EN</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-3xl w-full mx-auto px-4 py-8 flex-1">
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 mb-6">
+      <div class="flex items-center gap-3 mb-3">
+        <img src="https://cuvet-libraly.github.io/turnitin/logo.png" alt="Faculty of Veterinary Science" class="h-12 w-auto object-contain">
+        <div>
+          <h2 id="v-heading" class="text-lg font-bold text-slate-800">ตรวจสอบความถูกต้องของรายงานผล Turnitin</h2>
+          <p id="v-desc" class="text-xs text-slate-500">กรอกรหัสอ้างอิง (Ref. ID) บนหน้าปกรับรอง หรือสแกน QR Code จากเอกสารเพื่อยืนยันข้อมูลจากฐานข้อมูลห้องสมุด</p>
+        </div>
+      </div>
+      
+      <div class="flex gap-2 mt-4">
+        <input type="text" id="verify-input" placeholder="e.g. TRN-2569-0001-X8" 
+          onkeypress="if(event.key==='Enter') handleVerify()"
+          class="flex-1 px-4 py-2.5 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-700 uppercase font-mono">
+        <button onclick="handleVerify()" id="v-btn" class="px-6 py-2.5 bg-pink-800 hover:bg-pink-900 text-white font-medium rounded-xl transition cursor-pointer">
+          ตรวจสอบ
+        </button>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div id="verify-loading" class="hidden text-center py-12">
+      <div class="inline-block w-8 h-8 border-4 border-pink-800 border-t-transparent rounded-full animate-spin"></div>
+      <p id="v-loading-text" class="text-sm text-slate-500 mt-2">กำลังดึงข้อมูลจากฐานข้อมูลห้องสมุด...</p>
+    </div>
+
+    <!-- Result Box -->
+    <div id="verify-result" class="hidden"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-400 text-xs py-6 mt-12">
+    <div class="max-w-4xl mx-auto px-4 flex flex-wrap items-center justify-between gap-2">
+      <div>
+        <p class="text-slate-200 font-semibold">ห้องสมุดและศูนย์เอกสารการสัตว์ คณะสัตวแพทยศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย</p>
+        <p>The Veterinary Library and Information Center, Chulalongkorn University</p>
+      </div>
+      <div class="text-right">
+        <p>Contact: <span class="text-pink-300">Hathaichanok.b@chula.ac.th</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const GAS_API_URL = "https://script.google.com/macros/s/AKfycbyNHO_JpTEMzr8XfEl5dMMAFDWjsFtl0QvakSCZSFzZh3p9D-A6_T2LKdaqrpNb7HF7Zw/exec";
+    let currentLang = "th";
+    let lastVerifyData = null;
+
+    const I18N = {
+      th: {
+        pageTitle: "ตรวจสอบใบรับรอง Turnitin | ห้องสมุดและศูนย์เอกสารการสัตว์ คณะสัตวแพทยศาสตร์ จุฬาฯ",
+        navTitle: "ระบบตรวจสอบความถูกต้องใบรับรอง Turnitin",
+        navSubtitle: "ห้องสมุดและศูนย์เอกสารการสัตว์ คณะสัตวแพทยศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย",
+        navHome: "หน้าหลัก / ขอรับบริการ",
+        vHeading: "ตรวจสอบความถูกต้องของรายงานผล Turnitin",
+        vDesc: "กรอกรหัสอ้างอิง (Ref. ID) บนหน้าปกรับรอง หรือสแกน QR Code จากเอกสารเพื่อยืนยันข้อมูลจากฐานข้อมูลห้องสมุด",
+        vBtn: "ตรวจสอบ",
+        vLoading: "กำลังดึงข้อมูลจากฐานข้อมูลห้องสมุด...",
+        notFoundTitle: "ไม่พบข้อมูลรหัสอ้างอิงนี้ในระบบ",
+        notFoundDesc: "เอกสารนี้อาจไม่ได้ออกโดยห้องสมุดคณะสัตวแพทยศาสตร์ จุฬาฯ หรือรหัสอ้างอิงไม่ถูกต้อง",
+        officialTitle: "เอกสารรับรองผลอย่างเป็นทางการ",
+        cancelledTitle: "ยกเลิกใบรับรอง (ปรับสถานะเป็นฉบับร่าง Draft)",
+        cancelledDesc: "ใบรับรองฉบับนี้ถูกยกเลิกแล้วเนื่องจากนิสิตขอแก้ไขเนื้อหาและส่งตรวจใหม่ ผลการตรวจรอบนี้จึงมีสถานะเป็นเพียงฉบับร่าง (Draft) กรุณาอ้างอิงใบรับรองฉบับล่าสุดจากตารางประวัติการตรวจด้านล่าง",
+        draftTitle: "ฉบับร่างสำหรับแก้ไข (ไม่ใช่ฉบับรับรองผล)",
+        draftDesc: "เอกสารนี้เป็นเพียงผลการตรวจเพื่อให้นิสิตนำไปปรับปรุงแก้ไข ยังไม่ผ่านการออกใบรับรองฉบับสมบูรณ์",
+        lblRef: "รหัสอ้างอิง:",
+        lblStudent: "นิสิต:",
+        lblPaper: "ชื่อเรื่อง:",
+        lblDate: "วันที่ตรวจ:",
+        lblStaff: "เจ้าหน้าที่ผู้ตรวจ:",
+        lblSim: "ค่าความซ้ำซ้อน (Similarity)",
+        lblAi: "ค่าตรวจจับ AI (AI Writing)",
+        lblRound: "ตรวจครั้งที่",
+        histTitle: "ประวัติการส่งตรวจทั้งหมดของเอกสารชิ้นนี้",
+        thRound: "รอบที่",
+        thDate: "วัน-เวลาที่ตรวจ",
+        thSim: "Similarity (%)",
+        thAi: "AI Writing",
+        thStatus: "สถานะ",
+        statusOfficial: "ฉบับรับรองผล",
+        statusCancelled: "ยกเลิกใบรับรอง",
+        statusDraft: "ฉบับร่าง (Draft)"
+      },
+      en: {
+        pageTitle: "Verify Turnitin Certificate | The Veterinary Library and Information Center, Chulalongkorn University",
+        navTitle: "Turnitin Certificate Verification System",
+        navSubtitle: "The Veterinary Library and Information Center, Chulalongkorn University",
+        navHome: "Home / Request Service",
+        vHeading: "Verify Turnitin Similarity Report Authenticity",
+        vDesc: "Enter the Reference ID shown on the cover certificate or scan the QR Code to verify against the library database.",
+        vBtn: "Verify",
+        vLoading: "Retrieving record from library database...",
+        notFoundTitle: "Reference ID Not Found",
+        notFoundDesc: "This document may not have been issued by The Veterinary Library and Information Center, Chulalongkorn University, or the Reference ID is invalid.",
+        officialTitle: "Official Certified Similarity Report",
+        cancelledTitle: "Certificate Cancelled (Reverted to Draft)",
+        cancelledDesc: "The official certificate for this attempt has been revoked upon the student's revision request, reverting this record to Draft status. Please refer to the latest certified submission in the history table below.",
+        draftTitle: "Draft Version for Revision (Not Official)",
+        draftDesc: "This report is issued for revision purposes only and cannot be used as an official submission certificate.",
+        lblRef: "Reference ID:",
+        lblStudent: "Student:",
+        lblPaper: "Title:",
+        lblDate: "Checked Date:",
+        lblStaff: "Checked By:",
+        lblSim: "Similarity Index",
+        lblAi: "AI Writing Detection",
+        lblRound: "Attempt #",
+        histTitle: "Complete Submission History for This Document",
+        thRound: "Attempt",
+        thDate: "Date & Time",
+        thSim: "Similarity (%)",
+        thAi: "AI Writing",
+        thStatus: "Status",
+        statusOfficial: "Official Certified",
+        statusCancelled: "Certificate Cancelled",
+        statusDraft: "Draft Only"
+      }
+    };
+
+    window.onload = function() {
+      const params = new URLSearchParams(window.location.search);
+      const refParam = (params.get('ref') || '').trim();
+      const langParam = (params.get('lang') || '').toLowerCase();
+      currentLang = langParam === 'en' ? 'en' : 'th';
+      applyLanguage();
+
+      if (refParam) {
+        document.getElementById('verify-input').value = refParam;
+        handleVerify();
+      }
+    };
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      applyLanguage();
+      if (lastVerifyData) renderVerifyResult(lastVerifyData);
+    }
+
+    function applyLanguage() {
+      const t = I18N[currentLang];
+      document.title = t.pageTitle;
+      document.documentElement.lang = currentLang;
+      document.getElementById('nav-title').textContent = t.navTitle;
+      document.getElementById('nav-subtitle').textContent = t.navSubtitle;
+      document.getElementById('nav-home').textContent = t.navHome;
+      document.getElementById('nav-home').href = currentLang === 'en' ? './index.html?lang=en' : './index.html';
+      document.getElementById('v-heading').textContent = t.vHeading;
+      document.getElementById('v-desc').textContent = t.vDesc;
+      document.getElementById('v-btn').textContent = t.vBtn;
+      document.getElementById('v-loading-text').textContent = t.vLoading;
+
+      document.getElementById('lang-th').className = currentLang === 'th'
+        ? 'px-2.5 py-1 text-xs rounded-lg bg-white text-pink-950 font-bold transition cursor-pointer'
+        : 'px-2.5 py-1 text-xs rounded-lg text-pink-200 hover:text-white font-bold transition cursor-pointer';
+      document.getElementById('lang-en').className = currentLang === 'en'
+        ? 'px-2.5 py-1 text-xs rounded-lg bg-white text-pink-950 font-bold transition cursor-pointer'
+        : 'px-2.5 py-1 text-xs rounded-lg text-pink-200 hover:text-white font-bold transition cursor-pointer';
+    }
+
+    async function handleVerify() {
+      const ref = document.getElementById('verify-input').value.trim().toUpperCase();
+      if (!ref) return;
+
+      document.getElementById('verify-loading').classList.remove('hidden');
+      document.getElementById('verify-result').classList.add('hidden');
+
+      try {
+        const url = `${GAS_API_URL}?action=verify&ref=${encodeURIComponent(ref)}`;
+        const response = await fetch(url);
+        const res = await response.json();
+        lastVerifyData = res;
+        renderVerifyResult(res);
+      } catch (err) {
+        document.getElementById('verify-loading').classList.add('hidden');
+        alert('ไม่สามารถเชื่อมต่อฐานข้อมูลได้ กรุณาลองใหม่อีกครั้ง: ' + err.message);
+      }
+    }
+
+    function renderVerifyResult(res) {
+      document.getElementById('verify-loading').classList.add('hidden');
+      const box = document.getElementById('verify-result');
+      box.classList.remove('hidden');
+      const L = I18N[currentLang];
+
+      if (!res || !res.found) {
+        box.innerHTML = `
+          <div class="bg-red-50 border-2 border-red-200 rounded-2xl p-6 text-center">
+            <div class="text-red-600 font-bold text-lg mb-1">${L.notFoundTitle}</div>
+            <p class="text-sm text-red-700">${L.notFoundDesc}</p>
+          </div>`;
+        return;
+      }
+
+      const t = res.target;
+      const isOfficial = t.status === 'Official';
+      const isCancelled = t.status === 'Cancelled';
+      const displayDate = currentLang === 'en' ? t.dateEn : t.dateTh;
+      const roundLabel = currentLang === 'en' ? `${L.lblRound}${t.round}` : `${L.lblRound} ${t.round}`;
+      const aiVal = t.aiWriting || 'N/A';
+
+      let badgeHtml = '';
+
+      if (isCancelled) {
+        badgeHtml = `
+          <div class="bg-red-50 border-2 border-red-400 rounded-2xl p-6 mb-6">
+            <div class="flex flex-wrap items-center gap-2 mb-2">
+              <span class="px-3 py-1 bg-red-600 text-white text-xs font-bold rounded-full">${L.statusCancelled}</span>
+              <span class="px-3 py-1 bg-slate-200 text-slate-700 text-xs font-bold rounded-full">${L.statusDraft}</span>
+              <span class="text-red-900 font-bold text-base">${L.cancelledTitle}</span>
+            </div>
+            <p class="text-sm text-red-800 mb-4 leading-relaxed">${L.cancelledDesc}</p>
+            <div class="bg-white/95 p-4 rounded-xl border border-red-200 text-sm space-y-1 text-slate-700">
+              <p><span class="text-slate-500">${L.lblRef}</span> <b class="font-mono text-slate-900">${t.refId}</b></p>
+              <p><span class="text-slate-500">${L.lblStudent}</span> <b>${t.studentName}</b> (${t.studentId})</p>
+              <p><span class="text-slate-500">${L.lblPaper}</span> <b>${t.paperTitle}</b></p>
+              <p><span class="text-slate-500">${L.lblSim} (${roundLabel}):</span> <b>${t.similarity}%</b> | <span class="text-slate-500">${L.lblAi}:</span> <b>${aiVal}</b> (${displayDate})</p>
+            </div>
+          </div>`;
+      } else if (isOfficial) {
+        badgeHtml = `
+          <div class="bg-emerald-50 border-2 border-emerald-500 rounded-2xl p-6 mb-6">
+            <div class="flex flex-wrap items-center gap-3 mb-4">
+              <span class="px-3 py-1 bg-emerald-600 text-white text-xs font-bold rounded-full">VERIFIED OFFICIAL</span>
+              <span class="text-emerald-900 font-bold text-lg">${L.officialTitle}</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 bg-white p-4 rounded-xl border border-emerald-200">
+              <div class="md:col-span-7 space-y-1.5 text-sm">
+                <p><span class="text-slate-500">${L.lblRef}</span> <b class="font-mono">${t.refId}</b></p>
+                <p><span class="text-slate-500">${L.lblStudent}</span> <b>${t.studentName}</b> (${t.studentId})</p>
+                <p><span class="text-slate-500">${L.lblPaper}</span> <b>${t.paperTitle}</b></p>
+                <p><span class="text-slate-500">${L.lblDate}</span> ${displayDate}</p>
+                <p><span class="text-slate-500">${L.lblStaff}</span> ${t.staffName}</p>
+              </div>
+              <div class="md:col-span-5 grid grid-cols-2 gap-2">
+                <div class="flex flex-col items-center justify-center bg-emerald-50 rounded-xl p-3 border border-emerald-200 text-center">
+                  <span class="text-[11px] text-emerald-700 font-medium">${L.lblSim}</span>
+                  <span class="text-3xl font-extrabold text-emerald-800 my-1">${t.similarity}%</span>
+                  <span class="text-[11px] text-emerald-600">${roundLabel}</span>
+                </div>
+                <div class="flex flex-col items-center justify-center bg-sky-50 rounded-xl p-3 border border-sky-200 text-center">
+                  <span class="text-[11px] text-sky-700 font-medium">${L.lblAi}</span>
+                  <span class="text-xl font-extrabold text-sky-900 my-2">${aiVal}</span>
+                  <span class="text-[10px] text-sky-600">Turnitin AI</span>
+                </div>
+              </div>
+            </div>
+          </div>`;
+      } else {
+        badgeHtml = `
+          <div class="bg-amber-50 border-2 border-amber-400 rounded-2xl p-6 mb-6">
+            <div class="flex flex-wrap items-center gap-3 mb-2">
+              <span class="px-3 py-1 bg-amber-500 text-white text-xs font-bold rounded-full">DRAFT ONLY</span>
+              <span class="text-amber-900 font-bold text-lg">${L.draftTitle}</span>
+            </div>
+            <p class="text-sm text-amber-800 mb-3">${L.draftDesc}</p>
+            <div class="bg-white p-4 rounded-xl border border-amber-200 text-sm space-y-1">
+              <p><span class="text-slate-500">${L.lblStudent}</span> <b>${t.studentName}</b> (${t.studentId})</p>
+              <p><span class="text-slate-500">${L.lblPaper}</span> <b>${t.paperTitle}</b></p>
+              <p><span class="text-slate-500">${L.lblSim} (${roundLabel}):</span> <b>${t.similarity}%</b> | <span class="text-slate-500">${L.lblAi}:</span> <b>${aiVal}</b> (${displayDate})</p>
+            </div>
+          </div>`;
+      }
+
+      const historyRows = res.history.map(h => {
+        const hDate = currentLang === 'en' ? h.dateEn : h.dateTh;
+        const hRound = currentLang === 'en' ? `#${h.round}` : `ครั้งที่ ${h.round}`;
+        let statusPill = `<span class="px-2.5 py-0.5 bg-slate-200 text-slate-700 rounded-full text-xs">${L.statusDraft}</span>`;
+        if (h.status === 'Official') {
+          statusPill = `<span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded-full text-xs font-medium">${L.statusOfficial}</span>`;
+        } else if (h.status === 'Cancelled') {
+          statusPill = `
+            <div class="flex flex-wrap items-center justify-center gap-1">
+              <span class="px-2.5 py-0.5 bg-slate-200 text-slate-700 rounded-full text-xs">${L.statusDraft}</span>
+              <span class="px-2.5 py-0.5 bg-red-100 text-red-700 rounded-full text-xs font-bold">${L.statusCancelled}</span>
+            </div>`;
+        }
+        return `
+        <tr class="${h.refId === t.refId ? 'bg-pink-50/60 font-medium' : ''}">
+          <td class="p-3 text-center">${hRound}</td>
+          <td class="p-3">${hDate}</td>
+          <td class="p-3 text-center font-bold">${h.similarity}%</td>
+          <td class="p-3 text-center font-semibold text-sky-900">${h.aiWriting || 'N/A'}</td>
+          <td class="p-3 text-center">${statusPill}</td>
+        </tr>`;
+      }).join('');
+
+      box.innerHTML = badgeHtml + `
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+          <h3 class="font-bold text-slate-800 mb-3">${L.histTitle}</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left border border-slate-200 rounded-lg overflow-hidden">
+              <thead class="bg-slate-100 text-slate-600">
+                <tr>
+                  <th class="p-3 text-center">${L.thRound}</th>
+                  <th class="p-3">${L.thDate}</th>
+                  <th class="p-3 text-center">${L.thSim}</th>
+                  <th class="p-3 text-center">${L.thAi}</th>
+                  <th class="p-3 text-center">${L.thStatus}</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200">${historyRows}</tbody>
+            </table>
+          </div>
+        </div>`;
+    }
+  </script>
+</body>
+</html>
