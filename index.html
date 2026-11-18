@@ -86,8 +86,8 @@
             <li>• ประเภทคำขอ: <b>Draft</b> หรือ <b>Official</b></li>
           </ul>
           <div id="s1-note" class="mt-3 text-xs text-amber-900 bg-amber-50 p-3 rounded-xl border border-amber-200/80 leading-relaxed">
-          <b>⚠️ ข้อควรระวัง:</b> ต้องเป็นไฟล์ PDF ที่แปลงจากต้นฉบับ <b>(Word)</b> โดยตรงเท่านั้น <b class="text-red-700">ห้ามใช้ไฟล์ที่ดาวน์โหลดจากระบบ iThesis (ไฟล์ที่มีแถบบาร์โค้ดด้านข้าง)</b> เนื่องจากระบบจะแปลงข้อความเป็นไฟล์ภาพ ทำให้ Turnitin ไม่สามารถอ่านและตรวจคำได้
-        </div>
+            <b>⚠️ ข้อควรระวัง:</b> ต้องเป็นไฟล์ PDF ที่แปลงจากต้นฉบับ <b>(Word)</b> โดยตรงเท่านั้น <b class="text-red-700">ห้ามใช้ไฟล์ที่ดาวน์โหลดจากระบบ iThesis (ไฟล์ที่มีแถบบาร์โค้ดด้านข้าง)</b> เนื่องจากระบบจะแปลงข้อความเป็นไฟล์ภาพ ทำให้ Turnitin ไม่สามารถอ่านและตรวจคำได้
+          </div>
         </div>
 
         <!-- Step 2 -->
@@ -468,7 +468,7 @@
       setText('s1-title', c.s1Title);
       setHtml('s1-desc', c.s1Desc);
       setHtml('s1-list', c.s1List);
-      setHTML('s1-note', c.s1Note);
+      setHtml('s1-note', c.s1Note);
 
       setText('s2-title', c.s2Title);
       setText('s2-desc', c.s2Desc);
@@ -611,7 +611,6 @@ ${stuName}
       const subject = document.getElementById('out-subject').value;
       const body = document.getElementById('out-body').value;
 
-      // คัดลอกเนื้อหาเต็มลงคลิปบอร์ดอัตโนมัติ และใช้ข้อความสั้นใน URL เพื่อป้องกัน Error AADSTS90015
       if (navigator.clipboard) {
         navigator.clipboard.writeText(body).catch(() => {});
       }
